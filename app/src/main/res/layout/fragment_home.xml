@@ -83,15 +83,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-        <include
-            android:id="@+id/l_upNextPodcast"
-            layout="@layout/up_next_podcast_layout_item"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_medium"
-            />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_upNext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
+                />
+
+        </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     

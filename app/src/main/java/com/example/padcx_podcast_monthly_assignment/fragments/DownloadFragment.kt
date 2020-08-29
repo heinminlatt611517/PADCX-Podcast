@@ -5,16 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.padcx_podcast_monthly_assignment.R
+import com.example.padcx_podcast_monthly_assignment.adapter.DownloadPodcastAdapter
+import com.example.padcx_podcast_monthly_assignment.adapter.UpNextPodcastAdapter
+import com.example.shared.fragment.BaseFragment
+import kotlinx.android.synthetic.main.fragment_download.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class DownloadFragment : Fragment() {
+class DownloadFragment : BaseFragment() {
 
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var mDownloadPodCastAdapter: DownloadPodcastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +42,20 @@ class DownloadFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setUpRecyclerView()
     }
+
+
+    private fun setUpRecyclerView() {
+        mDownloadPodCastAdapter = DownloadPodcastAdapter()
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
+        rv_downloadPodCast.layoutManager=linearLayoutManager
+        rv_downloadPodCast.adapter=mDownloadPodCastAdapter
+
+        mDownloadPodCastAdapter.setNewData(mutableListOf(1,2,3,4,5,6,7))
+    }
+
 
     companion object {
         @JvmStatic

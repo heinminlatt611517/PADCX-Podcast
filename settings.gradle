@@ -1,2 +1,4 @@
+include ':horizontial'
+include ':shared'
 include ':app'
 rootProject.name = "PADCX-Podcast-monthly-assignment"

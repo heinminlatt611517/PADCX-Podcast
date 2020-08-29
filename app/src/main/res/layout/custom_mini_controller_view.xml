@@ -10,7 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:layout_alignParentBottom="true"
-    android:layout_margin="@dimen/margin_medium"
     android:orientation="vertical"
     app:cardBackgroundColor="@color/fullPlaycard_bg"
     app:cardCornerRadius="18dp">
@@ -89,8 +88,8 @@
                 android:tintMode="src_in" />
 
             <ImageButton
-                android:id="@id/exo_pause"
-                style="@style/ExoMediaButton.Pause"
+                android:id="@id/exo_play"
+                style="@style/ExoMediaButton.Play"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:background="@drawable/circle_bg_play"

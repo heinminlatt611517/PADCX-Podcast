@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.padcx_podcast_monthly_assignment.R
+import com.example.shared.fragment.BaseFragment
 import kotlinx.android.synthetic.main.activity_podcast_detail.*
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class AccountFragment : Fragment() {
+class AccountFragment : BaseFragment() {
 
     private var param1: String? = null
     private var param2: String? = null

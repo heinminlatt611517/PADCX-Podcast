@@ -13,7 +13,6 @@
     android:orientation="vertical"
     app:cardCornerRadius="18dp"
     app:cardBackgroundColor="@color/fullPlaycard_bg"
-    android:layout_margin="@dimen/margin_medium"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,8 +111,8 @@
             android:tintMode="src_in" />
 
         <ImageButton
-            android:id="@id/exo_pause"
-            style="@style/ExoMediaButton.Pause"
+            android:id="@id/exo_play"
+            style="@style/ExoMediaButton.Play"
             android:tint="@android:color/darker_gray"
             android:background="@drawable/circle_bg_play"
             android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.padcx_podcast_monthly_assignment.views.viewHolders
+package com.example.shared.viewHolder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

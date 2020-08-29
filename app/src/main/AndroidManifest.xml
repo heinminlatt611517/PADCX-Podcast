@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.FullExoPlayerActivity"></activity>
+        <activity android:name=".activities.PodcastDetailActivity"></activity>
+        <activity android:name=".activities.FullExoPlayerActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
