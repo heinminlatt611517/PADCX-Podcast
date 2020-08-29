@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.padcx_podcast_monthly_assignment.views.viewPods.EmptyViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@android:color/darker_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/margin_xlarge"
+        android:layout_margin="@dimen/margin_medium_2"
+        app:cardBackgroundColor="@android:color/white"
+        android:elevation="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/music"
+                android:layout_marginTop="@dimen/margin_large"/>
+
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_txt_welcome"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/iv_empty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_medium"
+                />
+
+            <TextView
+                android:id="@+id/tv_emptyDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_welcome"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_centerHorizontal="true"
+                android:ems="14"
+                android:singleLine="false"
+                android:textAlignment="center"
+                android:text="@string/str_txt_ivEmptyDescription"
+                android:layout_gravity="center_horizontal" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_findSomething"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:cornerRadius="12dp"
+                android:text="@string/str_btn_findSomething"
+                android:layout_above="@+id/btn_reload"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:textColor="@android:color/black"
+                android:backgroundTint="@color/skyBlue"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_reload"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:cornerRadius="12dp"
+                android:text="@string/str_btn_reload"
+                android:layout_above="@+id/iv_dot"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:textColor="@android:color/black"
+                android:backgroundTint="@color/whiteYellow"/>
+
+            <ImageView
+                android:id="@+id/iv_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</com.example.padcx_podcast_monthly_assignment.views.viewPods.EmptyViewPod>

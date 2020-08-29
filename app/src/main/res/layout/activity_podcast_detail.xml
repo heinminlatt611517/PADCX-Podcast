@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include
+            android:id="@+id/miniPlayer"
+            layout="@layout/custom_mini_controller_view"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_podCastDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_detailEpisodeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/margin_large"
+                android:background="@drawable/rounded_corner_bg"
+                android:gravity="center"
+                android:text="ART &amp; DISIGN"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/constraint"
+            app:layout_constraintTop_toBottomOf="@+id/constraint"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large">
+
+            <TextView
+                android:id="@+id/tv_EpisodeTitle"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_large"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="Designing For everyone , everywhere with Yosef"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/iv_dateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:src="@drawable/ic_access_time" />
+
+            <TextView
+                android:id="@+id/tv_dateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_toRightOf="@+id/iv_dateTime"
+                android:gravity="center"
+                android:text="12 m"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_fire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_toRightOf="@+id/tv_dateTime"
+                android:src="@drawable/ic_fireplace" />
+
+            <TextView
+                android:id="@+id/tv_fireCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_toRightOf="@+id/iv_fire"
+                android:gravity="center"
+                android:text="88"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_toRightOf="@+id/tv_fireCount"
+                android:src="@drawable/ic_baseline_message_24" />
+
+            <TextView
+                android:id="@+id/tv_messageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_EpisodeTitle"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_toRightOf="@+id/iv_message"
+                android:gravity="center"
+                android:text="88"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_seeMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_dateTime"
+                android:layout_alignBottom="@+id/iv_dateTime"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_more_horizontal" />
+
+
+            <TextView
+                android:id="@+id/tv_divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@id/iv_dateTime"
+                android:layout_marginTop="@dimen/margin_large"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_detailEpisodeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:gravity="start"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:layout_below="@+id/tv_divider"
+                android:text="Podcast listeners have hundreds of thousands of potential shows to listen to. So how can you stack conditions in your favour for helping them choosing yours? One of the most important factors is to have a good podcast description.
+Writing your show's description or summary is like writing a blurb for a book. You want to sell the show to your potential listeners and encourage them to give you a shot. In this article, we're going to find out how to do just that. First up though"
+                android:textAlignment="textStart" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

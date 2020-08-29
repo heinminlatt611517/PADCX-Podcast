@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SearchFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.padcx_podcast_monthly_assignment.views.components.RoundedCornerImageView
+            android:id="@+id/iv_podCastCategory"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginTop="56dp"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:scaleType="fitXY"
+            android:src="@drawable/podcast_category"
+            app:cornerRadius="16dp" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:orientation="horizontal">
+
+            <include layout="@layout/item_search" />
+
+            <include layout="@layout/item_search" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_Category"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/layout"
+            android:layout_alignStart="@+id/iv_podCastCategory"
+            android:layout_alignLeft="@+id/iv_podCastCategory"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:text="@string/str_txt_category"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
+</FrameLayout>

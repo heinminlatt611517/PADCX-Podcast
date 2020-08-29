@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    app:cardCornerRadius="18dp"
+    app:cardBackgroundColor="@color/fullPlaycard_bg"
+    android:layout_margin="@dimen/margin_medium"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_large"
+    android:paddingLeft="@dimen/margin_medium"
+    android:paddingRight="@dimen/margin_medium"
+    android:orientation="vertical">
+
+    <com.example.padcx_podcast_monthly_assignment.views.components.RoundedCornerImageView
+        android:id="@+id/iv_fullPlay"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/music"
+        app:cornerRadius="12dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <TextView
+        android:id="@+id/tv_fullPlayTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_fullPlay"
+        app:layout_constraintTop_toTopOf="@+id/iv_fullPlay"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:text="Women n Tech Podcast and "
+        android:singleLine="true"
+        android:ems="9"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_regular_2x"
+        />
+    <TextView
+        android:id="@+id/tv_fullPlayDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The #women in tech show is "
+        android:ems="10"
+        android:textSize="@dimen/text_regular"
+        android:singleLine="true"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@+id/tv_fullPlayTitle"
+        app:layout_constraintTop_toTopOf="@+id/iv_fullPlay"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_fullPlay"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="@+id/tv_fullPlayTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_fullPlay"
+        android:orientation="horizontal">
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="170dp"
+            android:layout_height="26dp"
+            app:played_color="@color/player_vidoe_timer"
+            app:unplayed_color="@android:color/white" />
+
+        <TextView
+            android:id="@id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="1 hour left"
+            android:textColor="@color/player_vidoe_timer"
+            android:textSize="@dimen/text_smaller"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@id/exo_rew"
+            style="@style/ExoMediaButton.Rewind"
+            android:tint="@android:color/darker_gray"
+            android:tintMode="src_in" />
+
+
+        <ImageButton
+            android:id="@id/exo_play"
+            style="@style/ExoMediaButton.Shuffle"
+            android:tint="@android:color/darker_gray"
+            android:tintMode="src_in" />
+
+        <ImageButton
+            android:id="@id/exo_pause"
+            style="@style/ExoMediaButton.Pause"
+            android:tint="@android:color/darker_gray"
+            android:background="@drawable/circle_bg_play"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:tintMode="src_in" />
+
+        <ImageButton
+            android:id="@id/exo_ffwd"
+            style="@style/ExoMediaButton.Shuffle"
+            android:tint="@android:color/darker_gray"
+            android:tintMode="src_in"
+            />
+
+        <ImageButton
+            android:id="@id/exo_ffwd"
+            style="@style/ExoMediaButton.FastForward"
+            android:tint="@android:color/darker_gray"
+            android:tintMode="src_in" />
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

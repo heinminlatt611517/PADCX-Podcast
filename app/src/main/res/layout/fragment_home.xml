@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.HomeFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:elevation="0dp">
+  <com.google.android.material.appbar.CollapsingToolbarLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_scrollFlags="scroll|snapMargins"
+      android:elevation="0dp">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/margin_large"
+          android:layout_marginRight="@dimen/margin_large"
+          android:layout_marginTop="@dimen/margin_xxlarge">
+
+          <include
+              android:id="@+id/appBarMain"
+              layout="@layout/app_bar_main"
+              android:layout_marginTop="42dp"
+              android:layout_height="?attr/actionBarSize"
+              android:layout_width="match_parent"/>
+
+          <include
+              android:id="@+id/fullPlayer"
+              layout="@layout/custom_full_controller_view"
+              android:layout_width="match_parent"
+              android:layout_height="230dp"
+              android:layout_marginTop="@dimen/margin_large"
+              app:layout_constraintTop_toBottomOf="@+id/appBarMain"/>
+
+          <TextView
+              android:id="@+id/tv_episodeDescription"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:singleLine="false"
+              android:ems="15"
+              android:padding="@dimen/margin_medium_2"
+              android:lineHeight="28dp"
+              style="@style/TextAppearance.AppCompat.Body2"
+              android:layout_marginTop="@dimen/margin_medium"
+              android:background="@drawable/corner_radius_bg"
+              android:textSize="@dimen/text_regular"
+              android:text="Have a personalized domain name will make you stand out of the crowd and you audience and clients recognized your brand.So whatever your decide on"
+              app:layout_constraintTop_toBottomOf="@+id/fullPlayer"
+              app:layout_constraintStart_toStartOf="@+id/fullPlayer"/>
+
+          <TextView
+              android:id="@+id/tv_upNext"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/str_txt_upNext"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/tv_episodeDescription"
+              style="@style/TextAppearance.MaterialComponents.Headline5"
+              android:textColor="@android:color/black"
+              android:layout_marginTop="@dimen/margin_large"
+              />
+          <ImageView
+              android:id="@+id/iv_seeMore"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_more_horizontal"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="@+id/tv_upNext"
+              app:layout_constraintBottom_toBottomOf="@+id/tv_upNext"/>
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <include
+            android:id="@+id/l_upNextPodcast"
+            layout="@layout/up_next_podcast_layout_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_medium"
+            />
+    </androidx.core.widget.NestedScrollView>
+
+    
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

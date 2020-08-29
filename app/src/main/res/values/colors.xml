@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="nav_item_color">#D10E36</color>
+
+    <color name="player_vidoe_timer">#4682b4</color>
+    <color name="fullPlaycard_bg">#5664AF</color>
+
+    <color name="transParentGray">#48D1CECE</color>
+    <color name="skyBlue">#98D7F4</color>
+    <color name="whiteYellow">#EFD78D</color>
+    <color name="transParentColor">#A6B6B3B3</color>
+</resources>

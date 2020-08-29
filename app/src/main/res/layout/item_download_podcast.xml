@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="12dp"
+        android:elevation="1dp"
+        app:cardUseCompatPadding="true">
+        <ImageView
+            android:id="@+id/iv_upNext"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/placeholder"
+            android:scaleType="fitXY"
+            />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_episodeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_bg"
+        android:text="ART &amp; DISIGN"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="12dp"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        android:layout_marginLeft="@dimen/margin_large"/>
+
+    <TextView
+        android:id="@+id/tv_episodeDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_episodeTitle"
+        app:layout_constraintTop_toTopOf="@id/cardView"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        android:text="Designing for everyone everywhere with ..."
+        android:singleLine="false"
+        android:ems="13"
+        android:textSize="15dp"
+        style="@style/TextAppearance.AppCompat.Body2"
+        />
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardView"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:tint="@android:color/holo_red_dark"
+        />
+
+    <TextView
+        android:id="@+id/tv_episodeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:singleLine="true"
+        android:ems="10"
+        android:text="Weekly product that explore..."
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_episodeTitle"
+        />
+
+    <TextView
+        android:id="@+id/tv_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="@dimen/margin_large"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
