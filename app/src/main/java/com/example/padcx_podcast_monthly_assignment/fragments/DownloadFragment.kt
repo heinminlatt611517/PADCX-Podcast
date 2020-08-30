@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.padcx_podcast_monthly_assignment.R
 import com.example.padcx_podcast_monthly_assignment.adapter.DownloadPodcastAdapter
 import com.example.padcx_podcast_monthly_assignment.adapter.UpNextPodcastAdapter
+import com.example.padcx_podcast_monthly_assignment.mvp.presenter.DownloadPodcastPresenter
+import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.DownloadPodcastPresenterImpl
+import com.example.padcx_podcast_monthly_assignment.mvp.view.DownloadPodcastView
+import com.example.padcx_podcast_monthly_assignment.views.viewPods.EmptyViewPod
 import com.example.shared.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_download.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -17,12 +23,14 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class DownloadFragment : BaseFragment() {
+class DownloadFragment : BaseFragment() ,DownloadPodcastView {
 
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var mDownloadPodCastAdapter: DownloadPodcastAdapter
+    private lateinit var mDownloadPodCastPresenter : DownloadPodcastPresenter
+    private lateinit var mViewPodEmpty : EmptyViewPod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +51,20 @@ class DownloadFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpPresenter()
+        setUpEmptyView()
         setUpRecyclerView()
+    }
+
+    private fun setUpEmptyView() {
+       mViewPodEmpty = view_pod_empty as EmptyViewPod
+        mViewPodEmpty.setDelegate(mDownloadPodCastPresenter)
+
+    }
+
+    private fun setUpPresenter() {
+        mDownloadPodCastPresenter = ViewModelProviders.of(this).get(DownloadPodcastPresenterImpl::class.java)
+        mDownloadPodCastPresenter.initPresenter(this)
     }
 
 
@@ -53,7 +74,11 @@ class DownloadFragment : BaseFragment() {
         rv_downloadPodCast.layoutManager=linearLayoutManager
         rv_downloadPodCast.adapter=mDownloadPodCastAdapter
 
-        mDownloadPodCastAdapter.setNewData(mutableListOf(1,2,3,4,5,6,7))
+        rv_downloadPodCast.setEmptyView(mViewPodEmpty)
+
+
+        mDownloadPodCastAdapter.setNewData(mutableListOf())
+
     }
 
 
@@ -67,4 +92,24 @@ class DownloadFragment : BaseFragment() {
                 }
             }
     }
+
+    override fun showLoadingView() {
+
+    }
+
+    override fun hideLoadingView() {
+
+    }
+
+    override fun showDownloadPodCast() {
+        mDownloadPodCastAdapter.setNewData(mutableListOf(1,2,3,4))
+    }
+
+    override fun showErrorMessage(errorMessage: String) {
+
+    }
+
+    override fun getLifeCycleOwner(): LifecycleOwner = this
+
+
 }

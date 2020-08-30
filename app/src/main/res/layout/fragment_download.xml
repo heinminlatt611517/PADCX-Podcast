@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_yourShow"
             app:layout_constraintBottom_toBottomOf="@+id/tv_yourShow"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.example.padcx_podcast_monthly_assignment.views.components.SmartRecyclerView
             android:id="@+id/rv_downloadPodCast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,5 +52,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <include
+        android:id="@+id/view_pod_empty"
+        layout="@layout/view_pod_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </FrameLayout>
