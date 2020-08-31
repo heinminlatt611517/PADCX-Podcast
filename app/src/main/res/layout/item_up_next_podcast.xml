@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         android:text="Designing for everyone everywhere with ..."
         android:singleLine="false"
-        android:ems="13"
+        android:ems="12"
         android:textSize="15dp"
         style="@style/TextAppearance.AppCompat.Body2"
         />

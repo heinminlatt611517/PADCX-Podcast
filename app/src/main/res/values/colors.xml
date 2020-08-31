@@ -13,4 +13,8 @@
     <color name="skyBlue">#98D7F4</color>
     <color name="whiteYellow">#EFD78D</color>
     <color name="transParentColor">#A6B6B3B3</color>
+
+    <color name="color_shimmer">#fafafa</color>
+
+    <color name="background_color">#eeeeee</color>
 </resources>

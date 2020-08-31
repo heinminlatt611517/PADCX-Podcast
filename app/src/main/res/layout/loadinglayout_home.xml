@@ -1,0 +1,122 @@
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shrimmerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".fragments.HomeFragment">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:background="@color/background_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+           >
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|snapMargins"
+                android:elevation="0dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_large"
+                    android:layout_marginRight="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_xxlarge">
+
+                    <TextView
+                        android:id="@+id/appBarMain"
+                        android:layout_marginTop="42dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_width="match_parent"
+                        android:background="@color/color_shimmer"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/fullPlayerViewPod"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:background="@color/color_shimmer"
+                        android:layout_marginTop="@dimen/margin_large"
+                        app:layout_constraintTop_toBottomOf="@+id/appBarMain"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_upNext"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:background="@color/color_shimmer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fullPlayerViewPod"
+                        style="@style/TextAppearance.MaterialComponents.Headline5"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="@dimen/margin_large"
+                        />
+                    <TextView
+                        android:id="@+id/iv_seeMore"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@color/color_shimmer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_upNext"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_upNext"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_color"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@color/color_shimmer" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@color/color_shimmer" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@color/color_shimmer" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@color/color_shimmer" />
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</com.facebook.shimmer.ShimmerFrameLayout>

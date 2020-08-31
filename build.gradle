@@ -25,4 +25,18 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+//load api_key properties
+def Api_Key = loadApiKey()
+ext{
+    API_KEY=Api_Key.getProperty("API_KEY")
+    PLAYLIST_ID=Api_Key.getProperty("PLAYLIST_ID")
+}
+
+def loadApiKey(){
+    Properties api_key = new Properties()
+    api_key.load(project.rootProject.file("my_secrete_key.properties").newDataInputStream())
+
+    return api_key
+}
+
 apply from :'libraries.gradle'

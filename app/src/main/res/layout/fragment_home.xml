@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/normal_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -33,28 +38,13 @@
               android:layout_width="match_parent"/>
 
           <include
-              android:id="@+id/fullPlayer"
+              android:id="@+id/fullPlayerViewPod"
               layout="@layout/custom_full_controller_view"
               android:layout_width="match_parent"
-              android:layout_height="230dp"
+              android:layout_height="match_parent"
               android:layout_marginTop="@dimen/margin_large"
               app:layout_constraintTop_toBottomOf="@+id/appBarMain"/>
 
-          <TextView
-              android:id="@+id/tv_episodeDescription"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:singleLine="false"
-              android:ems="15"
-              android:padding="@dimen/margin_medium_2"
-              android:lineHeight="28dp"
-              style="@style/TextAppearance.AppCompat.Body2"
-              android:layout_marginTop="@dimen/margin_medium"
-              android:background="@drawable/corner_radius_bg"
-              android:textSize="@dimen/text_regular"
-              android:text="Have a personalized domain name will make you stand out of the crowd and you audience and clients recognized your brand.So whatever your decide on"
-              app:layout_constraintTop_toBottomOf="@+id/fullPlayer"
-              app:layout_constraintStart_toStartOf="@+id/fullPlayer"/>
 
           <TextView
               android:id="@+id/tv_upNext"
@@ -62,7 +52,7 @@
               android:layout_height="wrap_content"
               android:text="@string/str_txt_upNext"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/tv_episodeDescription"
+              app:layout_constraintTop_toBottomOf="@+id/fullPlayerViewPod"
               style="@style/TextAppearance.MaterialComponents.Headline5"
               android:textColor="@android:color/black"
               android:layout_marginTop="@dimen/margin_large"
@@ -87,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upNext"
                 android:layout_width="match_parent"
@@ -102,3 +94,10 @@
 
     
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loadinglayout_home"
+        android:visibility="gone"/>
+
+</FrameLayout>

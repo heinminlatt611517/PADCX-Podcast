@@ -2,7 +2,6 @@ package com.example.padcx_podcast_monthly_assignment.fragments
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_podcast_detail.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class AccountFragment : BaseFragment() {
+class AccountFragment : BaseFragment(){
 
     private var param1: String? = null
     private var param2: String? = null
@@ -31,11 +30,12 @@ class AccountFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_podcast_detail, container, false)
+        return inflater.inflate(R.layout.fragment_account, container, false)
 
         tv_detailEpisodeDescription.movementMethod=ScrollingMovementMethod()
 
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

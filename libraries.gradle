@@ -15,6 +15,8 @@ ext{
     retrofitAdapterVersion = "2.6.1"
     materialComponentVersion="1.2.0-alpha04"
     exoPlayerVersion = "2.10.3"
+    facebookShimmerVersion="0.5.0"
+    multidexVersion = "1.0.3"
 
     libraries = [
             glide : "com.github.bumptech.glide:glide:$glideVersion",
@@ -24,6 +26,7 @@ ext{
             rxAndroid : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             GSON : "com.google.code.gson:gson:$GSONVersion",
             Okhttp : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            OkhttpLogInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             swipeRefresh : "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion",
             retrofit : "com.squareup.retrofit2:retrofit:$retorfitVersion",
             retorfitConverter : "com.squareup.retrofit2:converter-gson:$retrofitConverterVersion",
@@ -35,6 +38,9 @@ ext{
             annotationKapt : "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
             room : "androidx.room:room-runtime:$room_version",
             roomKapt : "androidx.room:room-compiler:$room_version",
-            exoPlayer :  "com.google.android.exoplayer:exoplayer:$exoPlayerVersion"
+            exoPlayer :  "com.google.android.exoplayer:exoplayer:$exoPlayerVersion",
+            facebookShimmer : "com.facebook.shimmer:shimmer:$facebookShimmerVersion",
+            multidex : "com.android.support:multidex:$multidexVersion"
+
     ]
 }

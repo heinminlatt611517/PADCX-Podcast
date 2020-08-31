@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <com.google.android.material.card.MaterialCardView
+    android:id="@+id/cv_fullPlay"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="220dp"
-    android:layout_alignParentBottom="true"
     android:orientation="vertical"
     app:cardCornerRadius="18dp"
     app:cardBackgroundColor="@color/fullPlaycard_bg"
@@ -105,7 +105,7 @@
 
 
         <ImageButton
-            android:id="@id/exo_play"
+            android:id="@id/exo_progress"
             style="@style/ExoMediaButton.Shuffle"
             android:tint="@android:color/darker_gray"
             android:tintMode="src_in" />
@@ -133,11 +133,28 @@
             android:tintMode="src_in" />
 
 
-
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_episodeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:ems="15"
+        android:padding="@dimen/margin_medium_2"
+        android:lineHeight="28dp"
+        android:layout_below="@+id/cv_fullPlay"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/corner_radius_bg"
+        android:textSize="@dimen/text_regular"
+        android:text="Have a personalized domain name will make you stand out of the crowd and you audience and clients recognized your brand.So whatever your decide on"
+        app:layout_constraintTop_toBottomOf="@+id/fullPlayer"
+        app:layout_constraintStart_toStartOf="@+id/fullPlayer"/>
+
+</com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod>

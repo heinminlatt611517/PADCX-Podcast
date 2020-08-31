@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.example.padcx_podcast_monthly_assignment.views.viewPods.MiniPlayerViewPod
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
 
 
             <ImageButton
-                android:id="@id/exo_play"
+                android:id="@id/exo_ffwd"
                 style="@style/ExoMediaButton.Shuffle"
                 android:tint="@android:color/darker_gray"
                 android:tintMode="src_in" />
@@ -115,4 +115,4 @@
 
 </com.google.android.material.card.MaterialCardView>
 
-</RelativeLayout>
+</com.example.padcx_podcast_monthly_assignment.views.viewPods.MiniPlayerViewPod>

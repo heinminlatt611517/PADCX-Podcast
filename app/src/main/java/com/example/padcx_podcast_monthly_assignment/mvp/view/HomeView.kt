@@ -1,13 +1,15 @@
 package com.example.padcx_podcast_monthly_assignment.mvp.view
 
-import androidx.lifecycle.LifecycleOwner
+import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastPlaylistsVO
 import com.example.shared.mvp.view.BaseView
 
 interface HomeView : BaseView {
-    fun enableSwipeRefresh()
-    fun disableSwipeRefresh()
     fun showLoading()
     fun hideLoading()
-    fun showUpNextPodCastLists()
+    fun showNowPlayingPodCast(podCastEpisode : PodCastDataVO)
+    fun showUpNextPodCastlists(podCastPlaylists : UpNextPodCastPlaylistsVO)
+    fun onTapPlayButton()
+    fun navigateToDetailScreen(id : String)
 
 }

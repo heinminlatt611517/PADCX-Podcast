@@ -9,5 +9,6 @@
     <string name="str_txt_ivEmptyDescription">It looks like your aren\'t enrolled in any podcasts,but it\'s easy to get started.</string>
     <string name="str_btn_findSomething">Find something new</string>
     <string name="str_btn_reload">Reload</string>
-    <string name="str_txt_category">Categories</string>
+    <string name="str_txt_category">All Categories</string>
+    <string name="str_txt_loading">Loading...</string>
 </resources>

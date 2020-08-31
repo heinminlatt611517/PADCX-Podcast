@@ -13,6 +13,11 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
+
+        buildConfigField 'String','API_KEY',"\"${API_KEY}\""
+        buildConfigField 'String','PLAYLIST_ID',"\"${PLAYLIST_ID}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +53,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
+    implementation rootProject.ext.libraries.glide
+
     implementation rootProject.ext.libraries.materialComponent
     implementation rootProject.ext.libraries.recycler
 
@@ -60,6 +67,26 @@ dependencies {
     kapt rootProject.ext.libraries.roomKapt
 
     implementation rootProject.ext.libraries.exoPlayer
+    implementation rootProject.ext.libraries.GSON
+
+    implementation rootProject.ext.libraries.Okhttp
+    implementation rootProject.ext.libraries.OkhttpLogInterceptor
+
+    implementation rootProject.ext.libraries.retrofit
+    implementation rootProject.ext.libraries.retorfitConverter
+    implementation rootProject.ext.libraries.retrofitAdapter
+
+    implementation rootProject.ext.libraries.rxKotlin
+    implementation rootProject.ext.libraries.rxAndroid
+
+    implementation rootProject.ext.libraries.facebookShimmer
+
+    implementation rootProject.ext.libraries.multidex
+
+
+
+
+
 
 
 }

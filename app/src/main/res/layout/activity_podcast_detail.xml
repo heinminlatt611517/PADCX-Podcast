@@ -20,19 +20,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <com.example.padcx_podcast_monthly_assignment.views.components.RoundedCornerImageView
                     android:id="@+id/iv_podCastDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/placeholder"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cornerRadius="14dp"/>
 
                 <TextView
                     android:id="@+id/tv_detailEpisodeTitle"
@@ -55,6 +56,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         >
 
@@ -184,7 +186,7 @@ Writing your show's description or summary is like writing a blurb for a book. Y
 
             </RelativeLayout>
             <include
-                android:id="@+id/miniPlayer"
+                android:id="@+id/miniPlayerViewPod"
                 layout="@layout/custom_mini_controller_view"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"

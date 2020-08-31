@@ -1,33 +1,33 @@
 package com.example.padcx_podcast_monthly_assignment.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.padcx_podcast_monthly_assignment.R
 import com.example.padcx_podcast_monthly_assignment.adapter.PodcastCategoryAdapter
-import com.example.padcx_podcast_monthly_assignment.adapter.UpNextPodcastAdapter
-import com.example.padcx_podcast_monthly_assignment.mvp.presenter.CategoryPresenter
-import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.CategoryPresenterImpl
-import com.example.padcx_podcast_monthly_assignment.mvp.view.CategoryView
+import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastCategoryVO
+import com.example.padcx_podcast_monthly_assignment.mvp.presenter.SearchCategoryPresenter
+import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.SearchCategoryPresenterImpl
+import com.example.padcx_podcast_monthly_assignment.mvp.view.SearchCategoryView
 import com.example.shared.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_search.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class SearchFragment : BaseFragment(),CategoryView {
+class SearchFragment : BaseFragment(),SearchCategoryView {
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var mPodCastCategoryAdapter: PodcastCategoryAdapter
-    private lateinit var mCategoryPresenter : CategoryPresenter
+    private lateinit var mCategoryPresenter : SearchCategoryPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +49,13 @@ class SearchFragment : BaseFragment(),CategoryView {
 
         setUpPresenter()
         setUpRecyclerView()
+
+
+        mCategoryPresenter.onUIReady(this)
     }
 
     private fun setUpPresenter() {
-        mCategoryPresenter = ViewModelProviders.of(this).get(CategoryPresenterImpl::class.java)
+        mCategoryPresenter = ViewModelProviders.of(this).get(SearchCategoryPresenterImpl::class.java)
         mCategoryPresenter.initPresenter(this)
     }
 
@@ -62,7 +65,6 @@ class SearchFragment : BaseFragment(),CategoryView {
         rv_podCastCategory.layoutManager=linearLayoutManager
         rv_podCastCategory.adapter=mPodCastCategoryAdapter
 
-        mPodCastCategoryAdapter.setNewData(mutableListOf(1,2,3,4))
     }
 
 
@@ -85,9 +87,17 @@ class SearchFragment : BaseFragment(),CategoryView {
 
     }
 
+    override fun displayPodCastCategoryLists(categoryLists: ArrayList<PodCastCategoryVO>) {
+        Log.d("CategorySize",categoryLists.size.toString())
+        mPodCastCategoryAdapter.setNewData(categoryLists.toMutableList())
+    }
+
     override fun showErrorMessage(errorMessage: String) {
 
     }
 
-    override fun getLifeCycleOwner(): LifecycleOwner = this
+
+    override fun getLifeCycleOwner(): LifecycleOwner =this
+
+
 }
