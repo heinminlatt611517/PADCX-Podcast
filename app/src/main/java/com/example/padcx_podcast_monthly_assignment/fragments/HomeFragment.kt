@@ -47,9 +47,12 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mFullPlayerViewPod: FullPlayerViewPod
     private lateinit var mShimmerLayout : ShimmerFrameLayout
 
+    private val handler : Handler? =null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -66,14 +69,12 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mShimmerLayout = view.findViewById(R.id.loading_layout)
-
         setUpPresenter()
         setUpRecyclerView()
         setUpViewPod()
-
-
+        mShimmerLayout = view.findViewById(R.id.loading_layout)
         mHomePresenter.onUIReady(this)
+
     }
 
 
@@ -123,6 +124,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun showNowPlayingPodCast(podCastEpisode: PodCastDataVO) {
         context?.let { mFullPlayerViewPod.setData(podCastEpisode, it) }
+        Log.d("podCastEpisode",podCastEpisode.toString())
     }
 
 
@@ -149,15 +151,17 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun getLifeCycleOwner(): LifecycleOwner = this
 
-
     override fun onDestroy() {
-        mFullPlayerViewPod.onDestroy()
         super.onDestroy()
     }
 
     override fun onStop() {
         mFullPlayerViewPod.onDestroy()
+        mFullPlayerViewPod.changeButton()
         super.onStop()
     }
+
+
+
 
 }

@@ -10,6 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/normal_layout"
+    android:visibility="gone"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
     <com.google.android.material.appbar.AppBarLayout
@@ -77,8 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upNext"
                 android:layout_width="match_parent"
@@ -98,6 +97,6 @@
     <include
         android:id="@+id/loading_layout"
         layout="@layout/loadinglayout_home"
-        android:visibility="gone"/>
+        />
 
 </FrameLayout>

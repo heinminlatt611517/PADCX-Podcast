@@ -1,10 +1,18 @@
 package com.example.padcx_podcast_monthly_assignment.data.vos
 
+import com.google.gson.annotations.SerializedName
+
 data class PodcastVO(
-    val id: String,
-    val image: String,
-    val listennotes_url: String,
-    val publisher: String,
-    val thumbnail: String,
-    val title: String
+    @SerializedName("id")
+    val podcastId: String = "",
+    @SerializedName("image")
+    val podCastImage: String = "",
+    @SerializedName("listennotes_url")
+    val podCastListennotesUrl: String = "",
+    @SerializedName("publisher")
+    val podCastPublisher: String = "",
+    @SerializedName("thumbnail")
+    val podCastThumbnail: String = "",
+    @SerializedName("title")
+    val podCastTitle: String = ""
 )

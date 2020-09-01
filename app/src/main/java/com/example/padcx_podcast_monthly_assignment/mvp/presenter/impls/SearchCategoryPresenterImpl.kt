@@ -1,6 +1,7 @@
 package com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls
 
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
 import com.example.padcx_podcast_monthly_assignment.data.model.impls.PodCastModelImpl
 import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastCategoryVO
@@ -15,20 +16,17 @@ class SearchCategoryPresenterImpl : SearchCategoryPresenter ,AbstractBasePresent
     private val mPodCastModel : PodCastModel = PodCastModelImpl
 
     override fun onUIReady(lifecycleOwner: LifecycleOwner) {
-        getPodCastCategory()
+        getPodCastCategory(lifecycleOwner)
     }
 
-    private fun getPodCastCategory() {
+    private fun getPodCastCategory(lifecycleOwner: LifecycleOwner) {
         mView?.showLoading()
-        mPodCastModel.getPodCastCategory()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mView?.hideLoading()
-                mView?.displayPodCastCategoryLists(it)
-            },
-                {
-                    mView?.showErrorMessage(it.localizedMessage)
-                })
+        mPodCastModel.getAllPodCastCategory(onError = {
+            mView?.hideLoading()
+            mView?.showErrorMessage(it)
+        }).observe(lifecycleOwner, Observer {
+            mView?.hideLoading()
+            it?.let { mView?.displayPodCastCategoryLists(it as ArrayList) }
+        })
     }
 }

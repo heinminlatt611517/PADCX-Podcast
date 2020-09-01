@@ -83,6 +83,8 @@ dependencies {
 
     implementation rootProject.ext.libraries.multidex
 
+    implementation rootProject.ext.libraries.work
+
 
 
 

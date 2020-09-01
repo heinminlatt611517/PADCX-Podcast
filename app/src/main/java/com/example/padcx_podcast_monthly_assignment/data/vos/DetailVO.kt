@@ -1,5 +1,8 @@
 package com.example.padcx_podcast_monthly_assignment.data.vos
 
+import androidx.room.Embedded
+import com.google.gson.annotations.SerializedName
+
 data class DetailVO(
     val audio: String,
     val audio_length_sec: Int,
@@ -16,3 +19,4 @@ data class DetailVO(
     val thumbnail: String,
     val title: String
 )
+

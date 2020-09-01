@@ -1,0 +1,151 @@
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shrimmerLayout"
+    android:visibility="visible"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        >
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_color"
+            app:liftOnScroll="true">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|snapMargins">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/iv_podCastDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:background="@color/color_shimmer"
+                        android:src="@drawable/placeholder"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_detailEpisodeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="@dimen/margin_large"
+                        android:background="@color/color_shimmer"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_large"
+                    android:layout_marginRight="@dimen/margin_large">
+
+
+                    <TextView
+                        android:id="@+id/tv_EpisodeTitle"
+                        android:layout_width="350dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:background="@color/color_shimmer"
+                        />
+
+                    <TextView
+                        android:id="@+id/iv_dateTime"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@color/color_shimmer"
+                        android:layout_below="@+id/tv_EpisodeTitle"
+                        android:layout_marginTop="@dimen/margin_medium_2"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_dateTime"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@color/color_shimmer"
+                        android:layout_below="@+id/tv_EpisodeTitle"
+                        android:layout_alignTop="@+id/iv_dateTime"
+                        android:layout_alignBottom="@+id/iv_dateTime"
+                        android:layout_marginLeft="@dimen/margin_medium"
+                        android:layout_toRightOf="@+id/iv_dateTime"
+                        />
+
+                    <TextView
+                        android:id="@+id/iv_fire"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@color/color_shimmer"
+                        android:layout_below="@+id/tv_EpisodeTitle"
+                        android:layout_alignTop="@+id/iv_dateTime"
+                        android:layout_alignBottom="@+id/iv_dateTime"
+                        android:layout_marginLeft="@dimen/margin_medium_2"
+                        android:layout_toRightOf="@+id/tv_dateTime" />
+
+
+                    <TextView
+                        android:id="@+id/tv_detailEpisodeDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:gravity="start"
+                        android:background="@color/color_shimmer"
+                        android:layout_below="@+id/iv_fire"
+                        />
+
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/miniPlayerViewPod"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/color_shimmer"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_below="@+id/relative"
+                    />
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

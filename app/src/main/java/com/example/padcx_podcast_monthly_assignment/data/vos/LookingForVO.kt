@@ -1,6 +1,6 @@
 package com.example.padcx_podcast_monthly_assignment.data.vos
 
-data class LookingFor(
+data class LookingForVO(
     val cohosts: Boolean,
     val cross_promotion: Boolean,
     val guests: Boolean,

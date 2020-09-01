@@ -18,6 +18,7 @@ class DetailPresenterImpl : DetailPresenter,AbstractBasePresenter<DetailView>() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                mView?.hideLoading()
                 mView?.displayPodCastEpisode(it)
             },{
                 mView?.showErrorMessage(it.localizedMessage)

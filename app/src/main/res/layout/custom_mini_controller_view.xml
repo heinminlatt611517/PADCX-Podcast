@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@id/exo_position"
+                android:id="@+id/tv_currentTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -42,18 +42,17 @@
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="05:15"/>
+                android:text="00:00"/>
 
-            <com.google.android.exoplayer2.ui.DefaultTimeBar
-                android:id="@id/exo_progress"
-                android:layout_width="0dp"
-                android:layout_height="26dp"
+            <SeekBar
+                android:id="@+id/mediacontroller_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="170dp"
                 android:layout_weight="1"
-                app:played_color="@color/player_vidoe_timer"
-                app:unplayed_color="@android:color/white" />
+                android:layout_height="32dip" />
 
             <TextView
-                android:id="@id/exo_duration"
+                android:id="@+id/tv_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -61,7 +60,7 @@
                 android:paddingRight="4dp"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
-                android:text="18:51"
+                android:text="00:00"
                 android:textStyle="bold" />
 
         </LinearLayout>

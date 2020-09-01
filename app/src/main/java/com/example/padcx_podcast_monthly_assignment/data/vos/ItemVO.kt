@@ -1,9 +1,16 @@
 package com.example.padcx_podcast_monthly_assignment.data.vos
 
+import com.google.gson.annotations.SerializedName
+
 data class ItemVO(
-    val added_at_ms: Long,
-    val `data`: UpNextPodCastDataVO,
-    val id: Int,
+    @SerializedName("added_at_ms")
+    val addedAtMs: Long,
+    @SerializedName("data")
+    val data: UpNextPodCastDataVO? = null,
+    @SerializedName("id")
+    val ItemId: Int,
+    @SerializedName("notes")
     val notes: String,
+    @SerializedName("type")
     val type: String
 )

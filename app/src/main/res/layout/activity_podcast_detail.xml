@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/normal_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:elevation="0dp">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,8 +31,8 @@
                 android:id="@+id/constraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.example.padcx_podcast_monthly_assignment.views.components.RoundedCornerImageView
@@ -31,9 +41,9 @@
                     android:layout_height="200dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/placeholder"
+                    app:cornerRadius="14dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:cornerRadius="14dp"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_detailEpisodeTitle"
@@ -57,12 +67,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        >
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/relative"
                 android:layout_width="match_parent"
@@ -175,30 +185,31 @@
                     android:id="@+id/tv_detailEpisodeDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_divider"
                     android:layout_marginTop="@dimen/margin_large"
                     android:gravity="start"
                     android:scrollbars="vertical"
                     android:singleLine="false"
-                    android:layout_below="@+id/tv_divider"
                     android:text="Podcast listeners have hundreds of thousands of potential shows to listen to. So how can you stack conditions in your favour for helping them choosing yours? One of the most important factors is to have a good podcast description.
 Writing your show's description or summary is like writing a blurb for a book. You want to sell the show to your potential listeners and encourage them to give you a shot. In this article, we're going to find out how to do just that. First up though,Podcast listeners have hundreds of thousands of potential shows to listen to. So how can you stack conditions in your favour for helping them choosing yours? One of the most important factors is to have a good podcast description."
                     android:textAlignment="textStart" />
 
             </RelativeLayout>
+
             <include
                 android:id="@+id/miniPlayerViewPod"
                 layout="@layout/custom_mini_controller_view"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:layout_below="@+id/relative"
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_large"
-                android:layout_marginRight="@dimen/margin_medium"
-                android:layout_below="@+id/relative"
-                />
+                android:layout_marginRight="@dimen/margin_medium" />
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <include android:id="@+id/loading_layout"
+        layout="@layout/loadinglayout_detail"/>
+</FrameLayout>

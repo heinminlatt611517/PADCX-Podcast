@@ -15,7 +15,7 @@ data class PodcastDetailVO(
     val language: String,
     val latest_pub_date_ms: Long,
     val listennotes_url: String,
-    val looking_for: LookingFor,
+    val looking_for: LookingForVO,
     val publisher: String,
     val rss: String,
     val thumbnail: String,
