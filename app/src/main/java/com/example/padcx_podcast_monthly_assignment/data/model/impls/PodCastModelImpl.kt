@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import com.example.padcx_podcast_monthly_assignment.BuildConfig
 import com.example.padcx_podcast_monthly_assignment.data.model.BaseModel
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
-import com.example.padcx_podcast_monthly_assignment.data.vos.DetailVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastCategoryVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastPlaylistsVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.*
 import com.example.padcx_podcast_monthly_assignment.utils.EM_NO_INTERNET_CONNECTION
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -74,7 +71,9 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
        return mDatabase.podcastDao().getAllPodCastCategory()
     }
 
-
+    override fun getDownloadPodCast(): LiveData<List<DownloadPodCastDataVO>> {
+        return mDatabase.podcastDao().getAllDownloadPodCast()
+    }
 
 
     override fun getPodCastById(id: String) : Observable<DetailVO> {

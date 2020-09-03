@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">PADCX-Podcast-monthly-assignment</string>
+    <string name="app_name_production">PADCX-Podcast-monthly-assignment(product)</string>
+
+    <string name="app_name_dev">PADCX-Podcast-monthly-assignment(dev)</string>
+
+    <string name="app_name_staging">PADCX-Podcast-monthly-assignment(stag)</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_txt_upNext">Up Next</string>

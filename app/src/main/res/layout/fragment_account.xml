@@ -5,5 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AccountFragment">
 
+    <Button
+        android:id="@+id/btn_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

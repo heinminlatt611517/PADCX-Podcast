@@ -15,7 +15,7 @@
         android:elevation="1dp"
         app:cardUseCompatPadding="true">
         <ImageView
-            android:id="@+id/iv_upNext"
+            android:id="@+id/iv_Download"
             android:layout_width="80dp"
             android:layout_height="100dp"
             android:src="@drawable/placeholder"
@@ -37,7 +37,7 @@
         android:layout_marginLeft="@dimen/margin_large"/>
 
     <TextView
-        android:id="@+id/tv_episodeDescriptionTitle"
+        android:id="@+id/tv_downloadEpisodeDescriptionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/tv_episodeTitle"
@@ -59,6 +59,7 @@
         app:layout_constraintTop_toTopOf="@id/cardView"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:tint="@android:color/holo_red_dark"
+        android:visibility="gone"
         />
 
     <TextView

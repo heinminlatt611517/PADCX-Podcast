@@ -210,6 +210,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun showErrorMessage(errorMessage: String) {
         showSnackbar(errorMessage)
+        Toast.makeText(context, errorMessage,Toast.LENGTH_SHORT).show()
     }
 
 

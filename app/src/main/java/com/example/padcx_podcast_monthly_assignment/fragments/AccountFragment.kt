@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.padcx_podcast_monthly_assignment.R
+import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastDataVO
+import com.example.padcx_podcast_monthly_assignment.presistence.db.PodcastDb
 import com.example.shared.fragment.BaseFragment
 import kotlinx.android.synthetic.main.activity_podcast_detail.*
+import kotlinx.android.synthetic.main.fragment_account.*
 
 
 private const val ARG_PARAM1 = "param1"
@@ -17,6 +20,9 @@ class AccountFragment : BaseFragment(){
 
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var mDatabase: PodcastDb
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +38,34 @@ class AccountFragment : BaseFragment(){
     ): View? {
         return inflater.inflate(R.layout.fragment_account, container, false)
 
-        tv_detailEpisodeDescription.movementMethod=ScrollingMovementMethod()
 
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mDatabase = activity?.let { PodcastDb.getDbInstance(it) }!!
+
+        btn_click.setOnClickListener {
+
+            var mDownloadPodCast = DownloadPodCastDataVO()
+            mDownloadPodCast.DownloadAudio = "dsdfkalf"
+            mDownloadPodCast.DownloadAudioLengthSecs = 0
+            mDownloadPodCast.DownloadDescription = ""
+            mDownloadPodCast.DownloadExplicitContent = false
+            mDownloadPodCast.DownloadId = "aassssddd"
+            mDownloadPodCast.DownloadImage = ""
+            mDownloadPodCast.DownloadLink = ""
+            mDownloadPodCast.DownloadListennotesEditUrl = ""
+            mDownloadPodCast.DownloadListennotesUrl =""
+            mDownloadPodCast.DownloadMaybeAudioInvarid = false
+            mDownloadPodCast.DownloadPubDateMs = 0
+            mDownloadPodCast.DownloadThumbnail =""
+            mDownloadPodCast.DownloadTitle = ""
+
+            mDatabase.podcastDao().insertDownloadPodCast(mDownloadPodCast)
+        }
 
     }
 

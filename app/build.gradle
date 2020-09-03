@@ -2,6 +2,29 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'me.moallemi.advanced-build-version'
+
+
+advancedVersioning{
+    nameOptions{
+        versionMajor 0
+        versionMinor 0
+        versionPatch 1
+    }
+
+    codeOptions{
+        versionCodeType 'AUTO_INCREMENT_ONE_STEP'
+    }
+
+    outputOptions {
+        renameOutput true
+        nameFormat 'PodCastApp-v${versionName}'
+    }
+
+}
+
+def appVersionName = advancedVersioning.versionName
+def appVersionCode = advancedVersioning.versionCode
 
 android {
     compileSdkVersion 30
@@ -11,8 +34,8 @@ android {
         applicationId "com.example.padcx_podcast_monthly_assignment"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
         multiDexEnabled true
 
 
@@ -38,6 +61,40 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
+    productFlavors{
+        flavorDimensions  "appModule"
+        def BASE_URL_FIELD = "BASE_URL_FIELD"
+        def BASE_URL_PRODUCT = "\"https://listen-api.listennotes.com/api/v2/\""
+        def BASE_URL_STAGING = "\"https://listen-api.listennotes.com/api/v2/\""
+        def BASE_URL_DEV = "\"https://listen-api.listennotes.com/api/v2/\""
+
+        product{
+            dimension  "appModule"
+            applicationIdSuffix = ".prod"
+            manifestPlaceholders = [appName : "@string/app_name_production"]
+            buildConfigField 'String',BASE_URL_FIELD,BASE_URL_PRODUCT
+        }
+
+        staging{
+            dimension  "appModule"
+            applicationIdSuffix = ".stag"
+            manifestPlaceholders = [appName : "@string/app_name_staging"]
+            buildConfigField 'String',BASE_URL_FIELD,BASE_URL_STAGING
+        }
+
+        dev{
+            dimension  "appModule"
+            applicationIdSuffix = ".dev"
+            manifestPlaceholders = [appName : "@string/app_name_dev"]
+            buildConfigField 'String',BASE_URL_FIELD,BASE_URL_DEV
+        }
+
+
+    }
+
+
 }
 
 dependencies {
@@ -84,9 +141,6 @@ dependencies {
     implementation rootProject.ext.libraries.multidex
 
     implementation rootProject.ext.libraries.work
-
-
-
 
 
 
