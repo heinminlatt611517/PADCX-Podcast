@@ -30,12 +30,24 @@ class MiniPlayerViewPod @JvmOverloads constructor(
     private var isPlaying = false
     private var seekPlayerProgress: SeekBar? = null
 
+    override fun invalidate() {
+        super.invalidate()
+        releasePlayer()
+    }
+
+    private fun releasePlayer() {
+        simpleExoPlayer.playWhenReady = false
+    }
 
     fun setData(audioUrl : String){
         setUpExoPlayerListener(audioUrl)
     }
 
     fun onDestroy(){
+        simpleExoPlayer.playWhenReady = false
+    }
+
+    fun onStop(){
         simpleExoPlayer.playWhenReady = false
     }
 

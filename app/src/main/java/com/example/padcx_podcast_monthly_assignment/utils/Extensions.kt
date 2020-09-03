@@ -1,5 +1,6 @@
 package com.example.padcx_podcast_monthly_assignment.utils
 
+import java.io.File
 import java.util.*
 
 
@@ -17,4 +18,8 @@ fun Int.stringForTime(formatter : Formatter) : String? {
     } else {
         mFormatter.format("%02d:%02d", minutes, seconds).toString()
     }
+}
+
+fun String.createDocumentFile() : File{
+    return File(this)
 }

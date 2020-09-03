@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
 import com.example.padcx_podcast_monthly_assignment.data.model.impls.PodCastModelImpl
+import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.HomePresenter
 import com.example.padcx_podcast_monthly_assignment.mvp.view.HomeView
 import com.example.shared.mvp.presenter.AbstractBasePresenter
@@ -20,13 +21,18 @@ class HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
           getPreRequestPodCast(lifecycleOwner)
     }
 
+    override fun downLoadAudio(podCast: UpNextPodCastDataVO) {
+        TODO("Not yet implemented")
+    }
+
     override fun onTapUpNextPodCastItem(id: String) {
         mView?.navigateToDetailScreen(id)
     }
 
-    override fun onTapDownloadButton(id: String) {
-       Log.d("onTapDownload",id)
+    override fun onTapDownloadButton(podCast: UpNextPodCastDataVO) {
+        mView?.onTapDownloadButton(podCast)
     }
+
 
 
     private fun getPreRequestPodCast(lifecycleOwner: LifecycleOwner) {
@@ -35,7 +41,10 @@ class HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
               mView?.showErrorMessage(it)
           }).
               observe(lifecycleOwner, Observer {
-                  it?.let { mView?.showNowPlayingPodCast(it) }
+
+                  it?.let {
+                      mView?.showNowPlayingPodCast(it)
+                  }
               })
 
           mPodCastModel.getAllUpNextPodCast (onError = {
@@ -47,7 +56,6 @@ class HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
                       mView?.hideLoading()
                       mView?.showUpNextPodCastlists(it) }
               })
-
 
     }
 

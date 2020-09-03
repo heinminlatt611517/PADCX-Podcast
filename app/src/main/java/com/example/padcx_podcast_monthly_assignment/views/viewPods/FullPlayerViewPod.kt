@@ -26,7 +26,7 @@ class FullPlayerViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
 
-    private var mData : PodCastDataVO? = null
+    private var mData: PodCastDataVO? = null
     private lateinit var simpleExoPlayer: SimpleExoPlayer
     private lateinit var mediaSource: MediaSource
     private lateinit var dataSourceFactory: DefaultDataSourceFactory
@@ -34,35 +34,47 @@ class FullPlayerViewPod @JvmOverloads constructor(
     private var seekPlayerProgress: SeekBar? = null
 
 
-    fun setData(data : PodCastDataVO,context: Context){
+    override fun invalidate() {
+        super.invalidate()
+        releasePlayer()
+    }
 
-        Log.d("fullPlayData",data.toString())
+    private fun releasePlayer() {
+        simpleExoPlayer.playWhenReady = false
+    }
+
+    fun setData(data: PodCastDataVO, context: Context) {
+
+        Log.d("fullPlayData", data.toString())
         mData = data
         Glide.with(context)
             .load(data.image)
             .into(iv_fullPlay)
 
-        tv_fullPlayTitle.text=data.title
-        tv_episodeDescription.text=Html.fromHtml(data.description.toString())
-
-
+        tv_fullPlayTitle.text = data.title
+        tv_episodeDescription.text = Html.fromHtml(data.description.toString())
 
         setUpExoPlayerListener()
 
     }
 
 
-    fun onDestroy(){
+    fun onResume(){
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
+    }
+    fun onDestroy() {
         simpleExoPlayer.playWhenReady = false
     }
 
-   private fun setUpExoPlayerListener() {
-        Log.d("audioLink",mData?.audio+"")
+    private fun setUpExoPlayerListener() {
+        Log.d("audioLink", mData?.audio + "")
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
-        dataSourceFactory = DefaultDataSourceFactory(context, Util.getUserAgent(context, "exoPlayerSample"))
-        mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(mData?.audio))
+        dataSourceFactory =
+            DefaultDataSourceFactory(context, Util.getUserAgent(context, "exoPlayerSample"))
+        mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
+            .createMediaSource(Uri.parse(mData?.audio))
 
-       //initSeekBar()
+        //initSeekBar()
 
         with(simpleExoPlayer) {
             prepare(mediaSource)
@@ -71,7 +83,7 @@ class FullPlayerViewPod @JvmOverloads constructor(
             }
         }
 
-       initSeekBar()
+        initSeekBar()
     }
 
     private fun setPlayPause(playing: Boolean) {
@@ -89,7 +101,7 @@ class FullPlayerViewPod @JvmOverloads constructor(
 
     private fun setProgress() {
 
-        var handler : Handler? = null
+        var handler: Handler? = null
 
         Log.d("duration", simpleExoPlayer.duration.toString())
         seekPlayerProgress!!.progress = 0
@@ -137,12 +149,12 @@ class FullPlayerViewPod @JvmOverloads constructor(
         seekPlayerProgress!!.max = simpleExoPlayer.duration.toInt() / 1000
     }
 
-    interface Delegate{
+    interface Delegate {
         fun onDestroy()
     }
 
 
-    fun changeButton(){
+    fun changeButton() {
         exo_play.setImageResource(R.drawable.ic_media_play)
         isPlaying = false
     }

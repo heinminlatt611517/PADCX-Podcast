@@ -93,14 +93,14 @@ class PodcastDetailActivity : BaseActivity(),DetailView {
     }
 
     override fun showErrorMessage(errorMessage: String) {
-        TODO("Not yet implemented")
+       showSnackbar(errorMessage)
     }
 
     override fun getLifeCycleOwner(): LifecycleOwner =this
 
 
     override fun onDestroy() {
-        mMiniPlayerViewPod.onDestroy()
         super.onDestroy()
     }
+
 }

@@ -28,7 +28,7 @@ class UpNextPodcastViewHolder(private val mDelegate: PodCastItemDelegate,itemVie
         itemView.tv_remainPlayHour.text = stringForTime(data.data?.UpNextAudioLengthSecs!!)
 
         itemView.iv_download.setOnClickListener {
-            data.data?.UpNextId?.let { it1 -> mDelegate.onTapDownloadButton(it1) }
+            data.data?.UpNextId?.let { it1 -> mDelegate.onTapDownloadButton(data.data) }
         }
 
     }

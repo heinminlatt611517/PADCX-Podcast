@@ -5,9 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastCategoryVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastPlaylistsVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.*
 
 @Dao
 interface PodcastDao {
@@ -28,5 +26,11 @@ interface PodcastDao {
 
     @Query("SELECT * FROM podCastCategory")
     fun getAllPodCastCategory(): LiveData<List<PodCastCategoryVO>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDownloadPodCast(podCast : DownloadPodCastDataVO)
+
+    @Query("SELECT * FROM download")
+    fun getAllDownloadPodCast(): LiveData<List<DownloadPodCastDataVO>>
 
 }

@@ -9,6 +9,7 @@ import com.example.padcx_podcast_monthly_assignment.data.vos.DetailVO
 import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastCategoryVO
 import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastPlaylistsVO
+import com.example.padcx_podcast_monthly_assignment.utils.EM_NO_INTERNET_CONNECTION
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -26,7 +27,7 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
             .subscribe({
                   mDatabase.podcastDao().insertPodCast(it)
             },{
-                onError(it.localizedMessage)
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
     }
 
@@ -44,7 +45,7 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
             .subscribe({
             mDatabase.podcastDao().insertAllUpNextPodCast(it)
         },{
-            onError(it.localizedMessage)
+            onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
         })
     }
 
@@ -65,7 +66,7 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
             .subscribe({
                 mDatabase.podcastDao().insertAllPodCastCategory(it)
             },{
-                onError(it.localizedMessage)
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
     }
 

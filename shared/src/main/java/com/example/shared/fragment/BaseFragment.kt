@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.example.shared.mvp.view.BaseView
+import com.google.android.material.snackbar.Snackbar
+
 
 abstract class BaseFragment : Fragment() {
     private var loadingView: Dialog? = null
+
+    fun showSnackbar(message : String){
+        activity?.window?.decorView?.let { Snackbar.make(it,message,Snackbar.LENGTH_LONG).show() }
+    }
 //    override fun hideLoading() {
 //        loadingView?.let {
 //            if (it.isShowing) {

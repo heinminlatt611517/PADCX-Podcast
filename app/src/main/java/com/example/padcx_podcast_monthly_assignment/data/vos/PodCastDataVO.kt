@@ -37,5 +37,4 @@ data class PodCastDataVO(
     val thumbnail: String = "",
     @SerializedName("title")
     val title: String = ""
-
 )
