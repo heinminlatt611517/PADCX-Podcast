@@ -4,6 +4,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.padcx_podcast_monthly_assignment.data.vos.ItemVO
 import com.example.padcx_podcast_monthly_assignment.delegate.PodCastItemDelegate
+import com.example.padcx_podcast_monthly_assignment.utils.glideImageLoader
 import com.example.shared.viewHolder.BaseViewHolder
 import kotlinx.android.synthetic.main.item_up_next_podcast.view.*
 import java.util.*
@@ -18,9 +19,9 @@ class UpNextPodcastViewHolder(private val mDelegate: PodCastItemDelegate,itemVie
     override fun bindData(data: ItemVO) {
        mData=data
 
-        Glide.with(itemView.context)
-            .load(data.data?.UpNextImage)
-            .into(itemView.iv_upNext)
+        data.data?.UpNextImage?.let {
+            itemView.iv_upNext.glideImageLoader(itemView.context, it)
+        }
 
         itemView.tv_episodeDescriptionTitle.text=data.data?.UpNextTitle
         itemView.progressBar.progress = data.data?.UpNextAudioLengthSecs!! / 60 % 60

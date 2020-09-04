@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.padcx_podcast_monthly_assignment.R
 import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.presistence.db.PodcastDb
+import com.example.padcx_podcast_monthly_assignment.utils.glideImageLoader
 import com.example.shared.fragment.BaseFragment
 import kotlinx.android.synthetic.main.activity_podcast_detail.*
 import kotlinx.android.synthetic.main.fragment_account.*
@@ -42,6 +43,8 @@ class AccountFragment : BaseFragment(){
     }
 
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -66,6 +69,7 @@ class AccountFragment : BaseFragment(){
 
             mDatabase.podcastDao().insertDownloadPodCast(mDownloadPodCast)
         }
+
 
     }
 
