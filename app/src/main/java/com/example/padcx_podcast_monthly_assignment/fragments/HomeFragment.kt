@@ -153,7 +153,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onTapDownloadButton(podCastData: UpNextPodCastDataVO) {
-        beginDownload(podCastData)
+        //beginDownload(podCastData)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

@@ -41,6 +41,12 @@ interface PodcastDao {
     @Query("select * from download")
     fun getAllDownloadPodcastData(): LiveData<List<DownloadPodCastDataVO>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDetailData(data: DetailVO)
+
+    @Query("select * from detail WHERE id = :detail_id")
+    fun getAllDetailDataByEpisodeID(detail_id : String): LiveData<DetailVO>
+
 
 
 }

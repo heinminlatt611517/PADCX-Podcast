@@ -1,5 +1,6 @@
 package com.example.padcx_podcast_monthly_assignment.views.viewHolders
 
+import android.text.Html
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastDataVO
@@ -21,11 +22,11 @@ class DownloadPodcastViewHolder(itemView: View,private val delegate : DownloadDe
        mData = data
 
         Glide.with(itemView.context)
-            .load("https://cdn-images-1.listennotes.com/podcasts/exponent-ben-thompson-james-allworth-OaJSjb4xQv3.1400x1400.jpg")
+            .load(data.download_podcast_url)
             .into(itemView.iv_Download)
 
         itemView.tv_downloadEpisodeDescriptionTitle.text=data.donwload_podcast_title
-        itemView.tv_episodeDescription.text = data.download_podcast_description
+        itemView.tv_episodeDescription.text = Html.fromHtml(data.download_podcast_description)
     }
 
     interface DownloadDelegate{

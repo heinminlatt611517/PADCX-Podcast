@@ -63,8 +63,8 @@ class PodcastDetailActivity : BaseActivity(),DetailView {
         setUpPresenter()
         setUpViewPod()
         mShimmerLayout = findViewById(R.id.loading_layout)
-        //intent.getStringExtra(ID_EXTRA)?.let { mDetailPresenter.getPodCastEpisodeById(it) }
-        mDetailPresenter.getPodCastEpisodeById("")
+        intent.getStringExtra(ID_EXTRA)?.let { mDetailPresenter.onUiReady(this,"50d0110bec79414eac61cb472c3c1de2") }
+       // mDetailPresenter.getPodCastEpisodeById("")
     }
 
     private fun setUpViewPod() {
@@ -93,7 +93,6 @@ class PodcastDetailActivity : BaseActivity(),DetailView {
         if (intent.getStringExtra(PAGE_EXTRA).toString() == DOWNLOAD_FRAGMENT)
         {
             Log.d("Audio","download audio")
-            var audioUrl = intent.getStringExtra(AUDIO_FILE_PATH_EXTRA).toString()
             mMiniPlayerViewPod.setData(Environment.getExternalStorageDirectory().absolutePath +"/Download/.mp3")
         }
        else{

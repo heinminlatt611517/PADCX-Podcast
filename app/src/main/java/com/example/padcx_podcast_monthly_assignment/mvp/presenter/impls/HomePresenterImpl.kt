@@ -34,7 +34,7 @@ class HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
     override fun onTapDownloadButton(podCast: UpNextPodCastDataVO) {
         val downloadPodCastDataVO: DownloadPodCastDataVO = DownloadPodCastDataVO(
             podCast.UpNextId, podCast.UpNextTitle, podCast.UpNextDescription,
-            podCast.UpNextAudio,podCast.UpNextAudio)
+            podCast.UpNextThumbnail,podCast.UpNextAudio)
 
         mPodCastModel.saveDownloadPodcastItem(downloadPodCastDataVO,onSuccess = {},onError = {})
         mView?.showDownloadPodcastItem(podCast)

@@ -1,5 +1,7 @@
 package com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
 import com.example.padcx_podcast_monthly_assignment.data.model.impls.PodCastModelImpl
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.DetailPresenter
@@ -13,17 +15,28 @@ class DetailPresenterImpl : DetailPresenter,AbstractBasePresenter<DetailView>() 
 
     private val mPodCastModel : PodCastModel = PodCastModelImpl
 
-    override fun getPodCastEpisodeById(id: String) {
+    override fun onUiReady(lifecycleOwner: LifecycleOwner, id: String) {
+//        mView?.showLoading()
+//       mPodCastModel.getDetailFromApiAndSaveToDatabase(id, onSuccess = {
+//        }, onError = {})
+//
+//        mPodCastModel.getDetailEpisodeData(id, onError = {})
+//            .observe(lifecycleOwner, Observer {
+//                it?.let {
+//                    mView?.displayPodCastEpisode(it)
+//                    mView?.hideLoading()
+//                }
+//            })
+
         mView?.showLoading()
         mPodCastModel.getPodCastById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mView?.hideLoading()
+            .subscribe {
                 mView?.displayPodCastEpisode(it)
-            },{
-                mView?.showErrorMessage(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
-            })
-
+                mView?.hideLoading()
+            }
     }
+
+
 }

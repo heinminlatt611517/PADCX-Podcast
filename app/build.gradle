@@ -66,9 +66,9 @@ android {
     productFlavors{
         flavorDimensions  "appModule"
         def BASE_URL_FIELD = "BASE_URL_FIELD"
-        def BASE_URL_PRODUCT = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io/\""
-        def BASE_URL_STAGING = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io/\""
-        def BASE_URL_DEV = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io/\""
+        def BASE_URL_PRODUCT = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io\""
+        def BASE_URL_STAGING = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io\""
+        def BASE_URL_DEV = "\"https://ebbb5fa5-9b6f-4ee6-922b-e182d1f46760.mock.pstmn.io\""
 
         product{
             dimension  "appModule"

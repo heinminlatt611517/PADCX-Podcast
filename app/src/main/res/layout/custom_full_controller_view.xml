@@ -151,6 +151,7 @@
         android:layout_height="wrap_content"
         android:singleLine="false"
         android:ems="15"
+        android:maxLines="10"
         android:padding="@dimen/margin_medium_2"
         android:lineHeight="28dp"
         android:layout_below="@+id/cv_fullPlay"

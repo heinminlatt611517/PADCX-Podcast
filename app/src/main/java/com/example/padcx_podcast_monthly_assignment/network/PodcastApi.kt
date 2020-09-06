@@ -28,8 +28,8 @@ interface PodcastApi {
     fun getPodCastCategory(@Query("top_level_only") num : Int,@Header(PARAM_API_KEY) api_key: String) :
             Observable<PodCastCategoryResponse>
 
-    @GET("$GET_EPISODE_DETAIL/{EPISODE_ID}")
-    fun getEpisodeDetail(@Path("EPISODE_ID") episodeId : String,@Header(PARAM_API_KEY) api_key: String) :
+    @GET(GET_EPISODE_DETAIL)
+    fun getEpisodeDetail(@Path("id") episodeId : String,@Header(PARAM_API_KEY) api_key: String) :
             Observable<DetailVO>
 
 }

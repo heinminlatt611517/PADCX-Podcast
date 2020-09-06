@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.padcx_podcast_monthly_assignment.data.vos.*
 import com.example.padcx_podcast_monthly_assignment.presistence.daos.PodcastDao
 
-@Database(entities = [PodCastDataVO::class,UpNextPodCastPlaylistsVO::class,PodCastCategoryVO::class,DownloadPodCastDataVO::class],version = 2,exportSchema = false)
+@Database(entities = [PodCastDataVO::class,UpNextPodCastPlaylistsVO::class,PodCastCategoryVO::class,DownloadPodCastDataVO::class,DetailVO::class],version = 3,exportSchema = false)
 abstract class PodcastDb : RoomDatabase() {
     companion object{
         val DB_NAME = "PODCAST.DB"

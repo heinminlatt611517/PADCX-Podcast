@@ -28,4 +28,8 @@ interface PodCastModel {
     fun startDownloadPodcast(context: Context, dataVO: UpNextPodCastDataVO)
 
     fun getAllDownloadPodcastList(onError: (String) -> Unit) : LiveData<List<DownloadPodCastDataVO>>
+
+
+    fun getDetailEpisodeData(episodeId : String, onError: (String) -> Unit) : LiveData<DetailVO>
+    fun getDetailFromApiAndSaveToDatabase(episodeId : String, onSuccess: (detailVO :DetailVO) -> Unit, onError: (String) -> Unit)
 }

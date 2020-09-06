@@ -19,7 +19,7 @@ class UpNextPodcastViewHolder(private val mDelegate: PodCastItemDelegate,itemVie
     override fun bindData(data: ItemVO) {
        mData=data
 
-        data.data?.UpNextImage?.let {
+        data.data?.UpNextThumbnail?.let {
             itemView.iv_upNext.glideImageLoader(itemView.context, it)
         }
 

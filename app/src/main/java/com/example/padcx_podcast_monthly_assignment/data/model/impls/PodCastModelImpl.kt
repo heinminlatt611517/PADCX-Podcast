@@ -38,7 +38,7 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
         onError: (String) -> Unit,
         onSuccess: () -> Unit
     ) {
-        mPodCastApi.getPodCastPlaylists("","episode_list","0","recent_added_first",BuildConfig.API_KEY)
+        mPodCastApi.getPodCastPlaylists("m1pe7z60bsw","episode_list","0","recent_added_first",BuildConfig.API_KEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -96,6 +96,29 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
 
     override fun getAllDownloadPodcastList(onError: (String) -> Unit): LiveData<List<DownloadPodCastDataVO>> {
         return mDatabase.podcastDao().getAllDownloadPodcastData()
+    }
+
+    override fun getDetailEpisodeData(
+        episodeId: String,
+        onError: (String) -> Unit
+    ): LiveData<DetailVO> {
+        return mDatabase.podcastDao().getAllDetailDataByEpisodeID(episodeId)
+    }
+
+    override fun getDetailFromApiAndSaveToDatabase(
+        episodeId: String,
+        onSuccess: (detailVO: DetailVO) -> Unit,
+        onError: (String) -> Unit
+    ) {
+       mPodCastApi.getEpisodeDetail(episodeId,BuildConfig.API_KEY)
+           .map { it }
+           .subscribeOn(Schedulers.io())
+           .observeOn(AndroidSchedulers.mainThread())
+           .subscribe ({
+               it?.let{data-> mDatabase.podcastDao().insertDetailData(data) }
+           },{
+               onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+           })
     }
 
 
