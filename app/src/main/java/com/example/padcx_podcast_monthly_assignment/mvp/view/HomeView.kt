@@ -12,5 +12,6 @@ interface HomeView : BaseView {
     fun showUpNextPodCastlists(podCastPlaylists : UpNextPodCastPlaylistsVO)
     fun onTapDownloadButton(podCastData : UpNextPodCastDataVO)
     fun navigateToDetailScreen(id : String)
+    fun showDownloadPodcastItem(data: UpNextPodCastDataVO)
 
 }

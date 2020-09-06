@@ -1,5 +1,6 @@
 package com.example.padcx_podcast_monthly_assignment.data.model
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.padcx_podcast_monthly_assignment.data.vos.*
 import io.reactivex.Observable
@@ -21,4 +22,10 @@ interface PodCastModel {
     fun getDownloadPodCast() : LiveData<List<DownloadPodCastDataVO>>
 
     fun getPodCastById(id : String) : Observable<DetailVO>
+
+    fun saveDownloadPodcastItem(donwloadVO: DownloadPodCastDataVO, onSuccess: () -> Unit, onError: (String) -> Unit)
+
+    fun startDownloadPodcast(context: Context, dataVO: UpNextPodCastDataVO)
+
+    fun getAllDownloadPodcastList(onError: (String) -> Unit) : LiveData<List<DownloadPodCastDataVO>>
 }

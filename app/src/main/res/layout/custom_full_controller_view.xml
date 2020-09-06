@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -98,17 +99,20 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
-            android:id="@id/exo_rew"
+            android:id="@+id/one"
             style="@style/ExoMediaButton.Rewind"
             android:tint="@android:color/darker_gray"
             android:tintMode="src_in" />
 
 
         <ImageButton
-            android:id="@id/exo_progress"
-            style="@style/ExoMediaButton.Shuffle"
-            android:tint="@android:color/darker_gray"
-            android:tintMode="src_in" />
+            android:id="@+id/exo_rew"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:background="#05000000"
+            android:scaleX="-1"
+            android:src="@drawable/ic_baseline_backward_5_24"
+            android:tint="@android:color/darker_gray" />
 
         <ImageButton
             android:id="@id/exo_play"
@@ -120,14 +124,15 @@
             android:tintMode="src_in" />
 
         <ImageButton
-            android:id="@id/exo_ffwd"
-            style="@style/ExoMediaButton.Shuffle"
-            android:tint="@android:color/darker_gray"
-            android:tintMode="src_in"
-            />
+            android:id="@+id/exo_ffwd"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:background="#05000000"
+            android:src="@drawable/ic_baseline_forward_30_24"
+            android:tint="@android:color/darker_gray" />
 
         <ImageButton
-            android:id="@id/exo_ffwd"
+            android:id="@+id/two"
             style="@style/ExoMediaButton.FastForward"
             android:tint="@android:color/darker_gray"
             android:tintMode="src_in" />

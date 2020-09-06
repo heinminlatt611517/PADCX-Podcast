@@ -9,16 +9,30 @@ import android.util.Log
 import android.widget.RelativeLayout
 import android.widget.SeekBar
 import com.example.padcx_podcast_monthly_assignment.utils.stringForTime
+import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
+import com.google.android.exoplayer2.extractor.ExtractorsFactory
+import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.Util
+import kotlinx.android.synthetic.main.custom_full_controller_view.view.*
 import kotlinx.android.synthetic.main.custom_full_controller_view.view.exo_play
 import kotlinx.android.synthetic.main.custom_full_controller_view.view.mediacontroller_progress
 import kotlinx.android.synthetic.main.custom_mini_controller_view.view.*
+import kotlinx.android.synthetic.main.custom_mini_controller_view.view.exo_ffwd
+import kotlinx.android.synthetic.main.custom_mini_controller_view.view.exo_rew
 import java.util.*
+import com.google.android.exoplayer2.ExoPlayerFactory.newSimpleInstance as newSimpleInstance1
+
 
 class MiniPlayerViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -28,33 +42,55 @@ class MiniPlayerViewPod @JvmOverloads constructor(
     private lateinit var mediaSource: MediaSource
     private lateinit var dataSourceFactory: DefaultDataSourceFactory
     private var isPlaying = false
+
     private var seekPlayerProgress: SeekBar? = null
+    var mCurrentPosition: Int = 0
+    var firstTime: Boolean = false
+    var currentPosition: Long = 0
+
+
 
     override fun invalidate() {
         super.invalidate()
-        releasePlayer()
+        setUpListener()
+    }
+
+    private fun setUpListener() {
+
     }
 
     private fun releasePlayer() {
         simpleExoPlayer.playWhenReady = false
     }
 
-    fun setData(audioUrl : String){
+    fun setData(audioUrl: String) {
         setUpExoPlayerListener(audioUrl)
     }
 
-    fun onDestroy(){
+    fun onDestroy() {
         simpleExoPlayer.playWhenReady = false
     }
 
-    fun onStop(){
+    fun onStop() {
         simpleExoPlayer.playWhenReady = false
     }
 
     fun setUpExoPlayerListener(audioUrl: String) {
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
-        dataSourceFactory = DefaultDataSourceFactory(context, Util.getUserAgent(context, "exoPlayerSample"))
-        mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(audioUrl))
+        val userAgent: String = Util.getUserAgent(context, "exoPlayerSample")
+
+        val httpDataSourceFactory = DefaultHttpDataSourceFactory(
+            userAgent,
+            DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
+            DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
+            true
+        )
+
+        simpleExoPlayer = newSimpleInstance1(context)
+
+        dataSourceFactory = DefaultDataSourceFactory(context, null, httpDataSourceFactory)
+
+        mediaSource =
+            ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(audioUrl))
 
 
 
@@ -65,9 +101,39 @@ class MiniPlayerViewPod @JvmOverloads constructor(
             }
         }
 
+        exo_ffwd.setOnClickListener {
+            if (!firstTime) {
+                simpleExoPlayer.seekTo(30000)
+                forWardSeekBar()
+            }
+            if (firstTime) {
+                if (currentPosition < simpleExoPlayer.duration) {
+                    currentPosition += 30000
+                    simpleExoPlayer.seekTo(currentPosition)
+                    forWardSeekBar()
+                }
+            }
+
+        }
+
+
+        exo_rew.setOnClickListener {
+
+            if (currentPosition > 0) {
+                currentPosition -= 15000
+                simpleExoPlayer.seekTo(currentPosition)
+                backWardSeekBar()
+            }
+        }
+
         initSeekBar()
     }
 
+
+
+    private fun DefaultRenderersFactory(miniPlayerViewPod: MiniPlayerViewPod, nothing: Nothing?, extensionRendererModeOff: Int): DefaultRenderersFactory {
+          return DefaultRenderersFactory(miniPlayerViewPod,nothing,extensionRendererModeOff)
+    }
 
     private fun setPlayPause(playing: Boolean) {
 
@@ -82,9 +148,22 @@ class MiniPlayerViewPod @JvmOverloads constructor(
 
     }
 
+    private fun forWardSeekBar() {
+        Log.d("currentPosition", simpleExoPlayer.currentPosition.toString())
+        seekPlayerProgress!!.progress = simpleExoPlayer.currentPosition.toInt() / 1000
+        firstTime = true
+    }
+
+    private fun backWardSeekBar() {
+        Log.d("currentBackWardPosition", simpleExoPlayer.currentPosition.toString())
+        seekPlayerProgress!!.progress = simpleExoPlayer.currentPosition.toInt() / 1000
+        firstTime = true
+    }
+
+
     private fun setProgress() {
 
-        var handler : Handler? = null
+        var handler: Handler? = null
 
         Log.d("duration", simpleExoPlayer.duration.toString())
         seekPlayerProgress!!.progress = 0
@@ -101,7 +180,8 @@ class MiniPlayerViewPod @JvmOverloads constructor(
                     seekPlayerProgress!!.max = simpleExoPlayer.duration.toInt() / 1000
                     val mCurrentPosition = simpleExoPlayer.currentPosition.toInt() / 1000
                     seekPlayerProgress!!.progress = mCurrentPosition
-                    tv_currentTime.text = simpleExoPlayer.currentPosition.toInt().stringForTime(Formatter()
+                    tv_currentTime.text = simpleExoPlayer.currentPosition.toInt().stringForTime(
+                        Formatter()
                     )
                     tv_endTime.text = simpleExoPlayer.duration.toInt().stringForTime(Formatter())
                     handler.postDelayed(this, 1000)

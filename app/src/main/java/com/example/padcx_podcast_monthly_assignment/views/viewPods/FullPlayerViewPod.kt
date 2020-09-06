@@ -13,14 +13,19 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import com.bumptech.glide.Glide
 import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.utils.stringForTime
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.custom_full_controller_view.view.*
+import kotlinx.android.synthetic.main.custom_full_controller_view.view.exo_ffwd
+import kotlinx.android.synthetic.main.custom_full_controller_view.view.exo_play
+import kotlinx.android.synthetic.main.custom_full_controller_view.view.mediacontroller_progress
 import java.util.*
+
 
 class FullPlayerViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -30,18 +35,17 @@ class FullPlayerViewPod @JvmOverloads constructor(
     private lateinit var simpleExoPlayer: SimpleExoPlayer
     private lateinit var mediaSource: MediaSource
     private lateinit var dataSourceFactory: DefaultDataSourceFactory
-    private var isPlaying = false
     private var seekPlayerProgress: SeekBar? = null
+    private var isPlaying: Boolean = false
+    var firstTime: Boolean = false
+    var currentPosition: Long = 0
 
 
     override fun invalidate() {
         super.invalidate()
-        releasePlayer()
+        initializePlayer()
     }
 
-    private fun releasePlayer() {
-        simpleExoPlayer.playWhenReady = false
-    }
 
     fun setData(data: PodCastDataVO, context: Context) {
 
@@ -52,29 +56,32 @@ class FullPlayerViewPod @JvmOverloads constructor(
             .into(iv_fullPlay)
 
         tv_fullPlayTitle.text = data.title
-        tv_episodeDescription.text = Html.fromHtml(data.description.toString())
+        tv_episodeDescription.text = Html.fromHtml(data.description)
 
-        setUpExoPlayerListener()
-
+        initializePlayer()
     }
 
 
-    fun onResume(){
+    private fun initializePlayer() {
+
+        val userAgent: String = Util.getUserAgent(context, "exoPlayerSample")
+
+        val httpDataSourceFactory = DefaultHttpDataSourceFactory(
+            userAgent,
+            DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
+            DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
+            true
+        )
+
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
-    }
-    fun onDestroy() {
-        simpleExoPlayer.playWhenReady = false
-    }
 
-    private fun setUpExoPlayerListener() {
-        Log.d("audioLink", mData?.audio + "")
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context)
-        dataSourceFactory =
-            DefaultDataSourceFactory(context, Util.getUserAgent(context, "exoPlayerSample"))
-        mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(Uri.parse(mData?.audio))
+        dataSourceFactory = DefaultDataSourceFactory(context, null, httpDataSourceFactory)
 
-        //initSeekBar()
+        mediaSource =
+            ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.parse(mData?.audio))
+
+
 
         with(simpleExoPlayer) {
             prepare(mediaSource)
@@ -83,8 +90,34 @@ class FullPlayerViewPod @JvmOverloads constructor(
             }
         }
 
+        exo_ffwd.setOnClickListener {
+            if (!firstTime) {
+                simpleExoPlayer.seekTo(30000)
+                forWardSeekBar()
+            }
+            if (firstTime) {
+                if (currentPosition < simpleExoPlayer.duration) {
+                    currentPosition += 30000
+                    simpleExoPlayer.seekTo(currentPosition)
+                    forWardSeekBar()
+                }
+            }
+
+        }
+
+
+        exo_rew.setOnClickListener {
+
+            if (currentPosition > 0) {
+                currentPosition -= 15000
+                simpleExoPlayer.seekTo(currentPosition)
+                backWardSeekBar()
+            }
+        }
+
         initSeekBar()
     }
+
 
     private fun setPlayPause(playing: Boolean) {
 
@@ -99,6 +132,18 @@ class FullPlayerViewPod @JvmOverloads constructor(
 
     }
 
+    private fun forWardSeekBar() {
+        Log.d("currentPosition", simpleExoPlayer.currentPosition.toString())
+        seekPlayerProgress!!.progress = simpleExoPlayer.currentPosition.toInt() / 1000
+        firstTime = true
+    }
+
+    private fun backWardSeekBar() {
+        Log.d("currentBackWardPosition", simpleExoPlayer.currentPosition.toString())
+        seekPlayerProgress!!.progress = simpleExoPlayer.currentPosition.toInt() / 1000
+        firstTime = true
+    }
+
     private fun setProgress() {
 
         var handler: Handler? = null
@@ -110,7 +155,6 @@ class FullPlayerViewPod @JvmOverloads constructor(
         if (handler == null) {
             handler = Handler()
         }
-        //Make sure you update Seekbar on UI thread
         handler.post(object : Runnable {
             override fun run() {
                 if (simpleExoPlayer != null && isPlaying) {
@@ -135,8 +179,6 @@ class FullPlayerViewPod @JvmOverloads constructor(
                 fromUser: Boolean
             ) {
                 if (!fromUser) {
-                    // We're not interested in programmatically generated changes to
-                    // the progress bar's position.
                     return
                 }
                 simpleExoPlayer.seekTo(progress * 1000.toLong())
@@ -149,14 +191,5 @@ class FullPlayerViewPod @JvmOverloads constructor(
         seekPlayerProgress!!.max = simpleExoPlayer.duration.toInt() / 1000
     }
 
-    interface Delegate {
-        fun onDestroy()
-    }
-
-
-    fun changeButton() {
-        exo_play.setImageResource(R.drawable.ic_media_play)
-        isPlaying = false
-    }
-
 }
+

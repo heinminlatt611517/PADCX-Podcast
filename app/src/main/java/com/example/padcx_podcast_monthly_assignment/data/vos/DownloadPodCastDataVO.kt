@@ -8,17 +8,9 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "download")
 data class DownloadPodCastDataVO(
     @PrimaryKey
-    var DownloadId: String = "",
-    var DownloadAudio: String = "",
-    var DownloadAudioLengthSecs: Int = 0,
-    var DownloadDescription: String = "",
-    var DownloadExplicitContent: Boolean = false,
-    var DownloadImage: String = "",
-    var DownloadLink: String? = "",
-    var DownloadListennotesEditUrl: String = "",
-    var DownloadListennotesUrl: String = "",
-    var DownloadMaybeAudioInvarid: Boolean = false,
-    var DownloadPubDateMs: Long = 0,
-    var DownloadThumbnail: String = "",
-    var DownloadTitle: String = ""
+    val download_id : String,
+    val donwload_podcast_title: String,
+    val download_podcast_description : String,
+    val download_podcast_url: String,
+    val download_audio_path : String
 )

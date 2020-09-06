@@ -1,12 +1,14 @@
 package com.example.padcx_podcast_monthly_assignment.data.model.impls
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.padcx_podcast_monthly_assignment.BuildConfig
 import com.example.padcx_podcast_monthly_assignment.data.model.BaseModel
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
 import com.example.padcx_podcast_monthly_assignment.data.vos.*
 import com.example.padcx_podcast_monthly_assignment.utils.EM_NO_INTERNET_CONNECTION
+import com.example.padcx_podcast_monthly_assignment.utils.startDownloading
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -36,7 +38,7 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
         onError: (String) -> Unit,
         onSuccess: () -> Unit
     ) {
-        mPodCastApi.getPodCastPlaylists(BuildConfig.PLAYLIST_ID,"episode_list","0","recent_added_first",BuildConfig.API_KEY)
+        mPodCastApi.getPodCastPlaylists("","episode_list","0","recent_added_first",BuildConfig.API_KEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -78,6 +80,22 @@ object PodCastModelImpl : BaseModel(),PodCastModel {
 
     override fun getPodCastById(id: String) : Observable<DetailVO> {
         return mPodCastApi.getEpisodeDetail(id,BuildConfig.API_KEY)
+    }
+
+    override fun saveDownloadPodcastItem(
+        donwloadVO: DownloadPodCastDataVO,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        mDatabase.podcastDao().insertDownloadPodcastData(donwloadVO)
+    }
+
+    override fun startDownloadPodcast(context: Context, dataVO: UpNextPodCastDataVO) {
+        startDownloading(context,dataVO)
+    }
+
+    override fun getAllDownloadPodcastList(onError: (String) -> Unit): LiveData<List<DownloadPodCastDataVO>> {
+        return mDatabase.podcastDao().getAllDownloadPodcastData()
     }
 
 

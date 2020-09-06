@@ -12,5 +12,7 @@ data class PodCastCategoryVO (
     @SerializedName("name")
     val name : String = "",
     @SerializedName("parent_id")
-    val parentId : Int = 0
+    val parentId : Int = 0,
+    @SerializedName("image_url")
+    val image_rul : String = ""
 )

@@ -28,9 +28,19 @@ interface PodcastDao {
     fun getAllPodCastCategory(): LiveData<List<PodCastCategoryVO>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDownloadPodCast(podCast : DownloadPodCastDataVO)
+    fun insertDownloadPodCast(podCast: DownloadPodCastDataVO)
 
     @Query("SELECT * FROM download")
     fun getAllDownloadPodCast(): LiveData<List<DownloadPodCastDataVO>>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDownloadPodcastData(podcasts: DownloadPodCastDataVO)
+
+
+    @Query("select * from download")
+    fun getAllDownloadPodcastData(): LiveData<List<DownloadPodCastDataVO>>
+
+
 
 }

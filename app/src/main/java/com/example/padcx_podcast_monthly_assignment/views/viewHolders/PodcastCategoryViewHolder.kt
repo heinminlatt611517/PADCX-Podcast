@@ -13,9 +13,9 @@ class PodcastCategoryViewHolder(itemView: View) : BaseViewHolder<PodCastCategory
     }
 
     override fun bindData(data: PodCastCategoryVO) {
+         mData = data
+        itemView.iv_category.glideImageLoader(itemView.context,data.image_rul)
 
-        itemView.iv_category.glideImageLoader(itemView.context,
-            "https://cdn-images-1.listennotes.com/podcasts/real-af-with-andy-frisella-andy-frisella-d_8pPgzeQW0-9-wONFLpkW3.300x300.jpg")
     }
 
 }

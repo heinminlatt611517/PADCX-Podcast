@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.example.padcx_podcast_monthly_assignment.data.model.PodCastModel
 import com.example.padcx_podcast_monthly_assignment.data.model.impls.PodCastModelImpl
+import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.DownloadPodcastPresenter
 import com.example.padcx_podcast_monthly_assignment.mvp.view.DownloadPodcastView
 import com.example.shared.mvp.presenter.AbstractBasePresenter
@@ -18,10 +19,10 @@ class DownloadPodcastPresenterImpl : DownloadPodcastPresenter,AbstractBasePresen
     }
 
     private fun fetchDownlodaPodcast(lifecycleOwner: LifecycleOwner) {
-          mPodCastModel.getDownloadPodCast()
-              .observe(lifecycleOwner, Observer {
-                  mView?.showDownloadPodCast(it)
-              })
+        mPodCastModel.getAllDownloadPodcastList( onError = {})
+            .observe(lifecycleOwner, Observer {
+                it?.let { mView?.displayDownloadList(it) }
+            })
     }
 
     override fun onTapFindSomethingNew() {
@@ -32,7 +33,8 @@ class DownloadPodcastPresenterImpl : DownloadPodcastPresenter,AbstractBasePresen
         Log.d("Reload","Tap Reload New")
     }
 
-    override fun onTapDownloadPodCastItem(id: String) {
-        mView?.navigateToPodCastDetailScreen(id)
+    override fun onTapDownloadPodCastItem(podCastDataVO: DownloadPodCastDataVO) {
+        mView?.navigateToDetailScreen(podCastDataVO)
     }
+
 }

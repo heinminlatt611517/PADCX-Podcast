@@ -1,11 +1,13 @@
 package com.example.padcx_podcast_monthly_assignment.fragments
 
+import android.app.Activity
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Context.DOWNLOAD_SERVICE
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +18,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,12 +34,13 @@ import com.example.padcx_podcast_monthly_assignment.mvp.presenter.HomePresenter
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.HomePresenterImpl
 import com.example.padcx_podcast_monthly_assignment.mvp.view.HomeView
 import com.example.padcx_podcast_monthly_assignment.presistence.db.PodcastDb
-import com.example.padcx_podcast_monthly_assignment.root.PodcastApp
+import com.example.padcx_podcast_monthly_assignment.utils.HOME_FRAGMENT
 import com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod
 import com.example.shared.fragment.BaseFragment
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.ui.PlayerView
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.io.File
 
 
 private const val ARG_PARAM1 = "param1"
@@ -46,12 +51,14 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private var param1: String? = null
     private var param2: String? = null
+    private val PERMISSION_REQUEST_CODE = 101
 
     private lateinit var mHomePresenter: HomePresenter
     private lateinit var mUpNextPodcastAdapter: UpNextPodcastAdapter
     private lateinit var mFullPlayerViewPod: FullPlayerViewPod
     private lateinit var mShimmerLayout: ShimmerFrameLayout
     private lateinit var mDatabase: PodcastDb
+
 
     private var downloadManager: DownloadManager? = null
 
@@ -154,12 +161,6 @@ class HomeFragment : BaseFragment(), HomeView {
 
         Toast.makeText(context, "Downloading....", Toast.LENGTH_SHORT).show()
 
-        val direct = File(context?.getExternalFilesDir(null), "/PodCastAudio")
-
-        if (!direct.exists()) {
-            direct.mkdirs()
-        }
-
         downloadManager = activity?.getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
         val Download_Uri =
             Uri.parse(podCastData.UpNextAudio)
@@ -171,46 +172,41 @@ class HomeFragment : BaseFragment(), HomeView {
         request.setTitle("My Data Download")
         request.setDescription("Android Data download using DownloadManager.")
             .setDestinationInExternalPublicDir(
-                Environment.DIRECTORY_MUSIC,
-                "/PodCastAudio/sample2.jpg"
+                Environment.DIRECTORY_DOWNLOADS,
+                "/PodCastAudio/audio.mp3"
             )
 
         downloadID = downloadManager!!.enqueue(request)
 
-        setDownloadPodCast(podCastData)
 
     }
-
-    private fun setDownloadPodCast(podCastData: UpNextPodCastDataVO) {
-        var mDownloadPodCast = DownloadPodCastDataVO()
-        mDownloadPodCast.DownloadAudio = podCastData.UpNextAudio
-        mDownloadPodCast.DownloadAudioLengthSecs = podCastData.UpNextAudioLengthSecs
-        mDownloadPodCast.DownloadDescription = podCastData.UpNextDescription
-        mDownloadPodCast.DownloadExplicitContent = podCastData.UpNextExplicitContent
-        mDownloadPodCast.DownloadId = podCastData.UpNextId
-        mDownloadPodCast.DownloadImage = podCastData.UpNextImage
-        mDownloadPodCast.DownloadLink = podCastData.UpNextLink
-        mDownloadPodCast.DownloadListennotesEditUrl = podCastData.UpNextListennotesEditUrl
-        mDownloadPodCast.DownloadListennotesUrl = podCastData.UpNextListennotesUrl
-        mDownloadPodCast.DownloadMaybeAudioInvarid = podCastData.UpNextMaybeAudioInvalid
-        mDownloadPodCast.DownloadPubDateMs = podCastData.UpNextPubDateMs
-        mDownloadPodCast.DownloadThumbnail = podCastData.UpNextThumbnail
-        mDownloadPodCast.DownloadTitle = podCastData.UpNextTitle
-
-        mDatabase.podcastDao().insertDownloadPodCast(mDownloadPodCast)
-
-    }
-
 
     override fun navigateToDetailScreen(id: String) {
 
-        startActivity(context?.let { PodcastDetailActivity.newIntent(it, id) })
+        startActivity(PodcastDetailActivity.newIntent(activity as Context, id, HOME_FRAGMENT,""))
+    }
+
+    override fun showDownloadPodcastItem(data: UpNextPodCastDataVO) {
+        setUpPremission(data)
+    }
+
+    private fun setUpPremission(data: UpNextPodCastDataVO) {
+        val permission = ContextCompat.checkSelfPermission(
+            activity as Activity,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest()
+        } else {
+            data?.let {  mHomePresenter?.onDownloadItem(activity as Context,it) }
+        }
     }
 
 
     override fun showErrorMessage(errorMessage: String) {
         showSnackbar(errorMessage)
-        Toast.makeText(context, errorMessage,Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -222,16 +218,16 @@ class HomeFragment : BaseFragment(), HomeView {
         context?.unregisterReceiver(onDownloadComplete)
     }
 
-    override fun onStop() {
-        mFullPlayerViewPod.onDestroy()
-        mFullPlayerViewPod.changeButton()
-        super.onStop()
+
+
+    private fun makeRequest() {
+        ActivityCompat.requestPermissions(
+            activity as Activity,
+            arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            PERMISSION_REQUEST_CODE
+        )
     }
 
-    override fun onResume() {
-        mFullPlayerViewPod.onResume()
-        super.onResume()
-    }
 
     private var onDownloadComplete: BroadcastReceiver? =
         object : BroadcastReceiver() {
@@ -243,5 +239,22 @@ class HomeFragment : BaseFragment(), HomeView {
             }
         }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(activity as Activity, "Permission Denied", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(context, "Permission GRANDED", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
 
 }

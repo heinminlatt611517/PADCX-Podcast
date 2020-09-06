@@ -1,9 +1,15 @@
 package com.example.padcx_podcast_monthly_assignment.fragments
 
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat.getExtras
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +20,8 @@ import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastData
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.DownloadPodcastPresenter
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.DownloadPodcastPresenterImpl
 import com.example.padcx_podcast_monthly_assignment.mvp.view.DownloadPodcastView
+import com.example.padcx_podcast_monthly_assignment.utils.DOWNLOAD_FRAGMENT
+import com.example.padcx_podcast_monthly_assignment.utils.HOME_FRAGMENT
 import com.example.padcx_podcast_monthly_assignment.views.viewPods.EmptyViewPod
 import com.example.shared.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_download.*
@@ -49,6 +57,7 @@ class DownloadFragment : BaseFragment(), DownloadPodcastView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         setUpPresenter()
         setUpEmptyView()
@@ -92,13 +101,12 @@ class DownloadFragment : BaseFragment(), DownloadPodcastView {
             }
     }
 
-
-    override fun showDownloadPodCast(downloadPodCastList: List<DownloadPodCastDataVO>) {
-        mDownloadPodCastAdapter.setNewData(downloadPodCastList.toMutableList())
+    override fun displayDownloadList(list: List<DownloadPodCastDataVO>) {
+      mDownloadPodCastAdapter.setNewData(list.toMutableList())
     }
-
-    override fun navigateToPodCastDetailScreen(id: String) {
-        startActivity(context?.let { PodcastDetailActivity.newIntent(it, id) })
+    override fun navigateToDetailScreen(downloadVO: DownloadPodCastDataVO) {
+        Log.d("audioFilePath",downloadVO.download_audio_path)
+        startActivity(PodcastDetailActivity.newIntent(activity as Context, downloadVO.download_id, DOWNLOAD_FRAGMENT,downloadVO.download_audio_path))
     }
 
     override fun showErrorMessage(errorMessage: String) {
@@ -107,6 +115,12 @@ class DownloadFragment : BaseFragment(), DownloadPodcastView {
 
 
     override fun getLifeCycleOwner(): LifecycleOwner = this
+
+    private var onDownloadComplete: BroadcastReceiver? =
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+            }
+        }
 
 
 }

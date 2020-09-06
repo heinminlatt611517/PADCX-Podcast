@@ -50,26 +50,6 @@ class AccountFragment : BaseFragment(){
 
         mDatabase = activity?.let { PodcastDb.getDbInstance(it) }!!
 
-        btn_click.setOnClickListener {
-
-            var mDownloadPodCast = DownloadPodCastDataVO()
-            mDownloadPodCast.DownloadAudio = "dsdfkalf"
-            mDownloadPodCast.DownloadAudioLengthSecs = 0
-            mDownloadPodCast.DownloadDescription = ""
-            mDownloadPodCast.DownloadExplicitContent = false
-            mDownloadPodCast.DownloadId = "aassssddd"
-            mDownloadPodCast.DownloadImage = ""
-            mDownloadPodCast.DownloadLink = ""
-            mDownloadPodCast.DownloadListennotesEditUrl = ""
-            mDownloadPodCast.DownloadListennotesUrl =""
-            mDownloadPodCast.DownloadMaybeAudioInvarid = false
-            mDownloadPodCast.DownloadPubDateMs = 0
-            mDownloadPodCast.DownloadThumbnail =""
-            mDownloadPodCast.DownloadTitle = ""
-
-            mDatabase.podcastDao().insertDownloadPodCast(mDownloadPodCast)
-        }
-
 
     }
 

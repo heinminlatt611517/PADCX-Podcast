@@ -50,7 +50,6 @@ class SearchFragment : BaseFragment(),SearchCategoryView {
         setUpPresenter()
         setUpRecyclerView()
 
-
         mCategoryPresenter.onUIReady(this)
     }
 

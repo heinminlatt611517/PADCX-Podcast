@@ -4,8 +4,7 @@ import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastData
 import com.example.shared.mvp.view.BaseView
 
 interface DownloadPodcastView : BaseView{
-    fun showDownloadPodCast(downloadPodCastList : List<DownloadPodCastDataVO>)
-
-    fun navigateToPodCastDetailScreen(id : String)
+    fun displayDownloadList(list: List<DownloadPodCastDataVO>)
+    fun navigateToDetailScreen(downloadVO: DownloadPodCastDataVO)
 
 }

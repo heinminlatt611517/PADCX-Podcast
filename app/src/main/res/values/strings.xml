@@ -15,4 +15,5 @@
     <string name="str_btn_reload">Reload</string>
     <string name="str_txt_category">All Categories</string>
     <string name="str_txt_loading">Loading...</string>
+    <string name="str_category">Category</string>
 </resources>
