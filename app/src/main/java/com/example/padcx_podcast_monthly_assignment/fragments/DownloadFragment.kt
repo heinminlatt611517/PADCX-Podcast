@@ -106,7 +106,12 @@ class DownloadFragment : BaseFragment(), DownloadPodcastView {
     }
     override fun navigateToDetailScreen(downloadVO: DownloadPodCastDataVO) {
         Log.d("audioFilePath",downloadVO.download_audio_path)
-        startActivity(PodcastDetailActivity.newIntent(activity as Context, downloadVO.download_id, DOWNLOAD_FRAGMENT,downloadVO.download_audio_path))
+//        startActivity(PodcastDetailActivity.newIntent(activity as Context,audioUrl = downloadVO.download_audio_path,title = downloadVO.donwload_podcast_title,
+//            image = downloadVO.download_podcast_url,
+//            description = downloadVO.download_podcast_description,
+//            page = DOWNLOAD_FRAGMENT
+//        ))
+        startActivity(context?.let { PodcastDetailActivity.newIntent(it,downloadVO.download_id) })
     }
 
     override fun showErrorMessage(errorMessage: String) {

@@ -1,36 +1,41 @@
 package com.example.padcx_podcast_monthly_assignment.data.vos
 
 import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
-
+@Entity(tableName = "upNext")
+@IgnoreExtraProperties
 data class UpNextPodCastDataVO(
+    @PrimaryKey
     @SerializedName("id")
-    val UpNextId: String = "",
+    var id: String = "",
     @SerializedName("audio")
-    val UpNextAudio: String = "",
+    var audio: String = "",
     @SerializedName("audio_length_sec")
-    val UpNextAudioLengthSecs: Int = 0,
+    var audio_length_sec: Int = 0,
     @SerializedName("description")
-    val UpNextDescription: String = "",
+    var description: String = "",
     @SerializedName("explicit_content")
-    val UpNextExplicitContent: Boolean = false,
+    var explicit_content: Boolean = false,
     @SerializedName("image")
-    val UpNextImage: String = "",
+    var image: String = "",
     @SerializedName("link")
-    val UpNextLink: String? = "",
+    var link: String? = "",
     @SerializedName("listennotes_edit_url")
-    val UpNextListennotesEditUrl: String = "",
+    var listennotes_edit_url: String = "",
     @SerializedName("listennotes_url")
-    val UpNextListennotesUrl: String = "",
+    var listennotes_url: String = "",
     @SerializedName("maybe_audio_invalid")
-    val UpNextMaybeAudioInvalid: Boolean = false,
+    var maybe_audio_invalid: Boolean = false,
     @Embedded
     @SerializedName("podcast")
-    val UpNextPodcast: PodcastVO? = null,
+    var podcast: PodcastVO? = null,
     @SerializedName("pub_date_ms")
-    val UpNextPubDateMs: Long = 0,
+    var pub_date_ms: Long = 0,
     @SerializedName("thumbnail")
-    val UpNextThumbnail: String = "",
+    var thumbnail: String = "",
     @SerializedName("title")
-    val UpNextTitle: String = ""
+    var title: String = ""
 )

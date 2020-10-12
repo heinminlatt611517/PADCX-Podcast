@@ -30,12 +30,10 @@ class DetailPresenterImpl : DetailPresenter,AbstractBasePresenter<DetailView>() 
 
         mView?.showLoading()
         mPodCastModel.getPodCastById(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                mView?.displayPodCastEpisode(it)
+            .observe(lifecycleOwner, Observer {
                 mView?.hideLoading()
-            }
+                mView?.displayPodCastEpisode(it)
+            })
     }
 
 

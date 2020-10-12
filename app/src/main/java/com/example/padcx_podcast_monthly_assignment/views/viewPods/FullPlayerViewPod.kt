@@ -12,6 +12,7 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import com.bumptech.glide.Glide
 import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.utils.stringForTime
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.MediaSource
@@ -31,7 +32,7 @@ class FullPlayerViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
 
-    private var mData: PodCastDataVO? = null
+    private var mData: UpNextPodCastDataVO? = null
     private lateinit var simpleExoPlayer: SimpleExoPlayer
     private lateinit var mediaSource: MediaSource
     private lateinit var dataSourceFactory: DefaultDataSourceFactory
@@ -47,7 +48,7 @@ class FullPlayerViewPod @JvmOverloads constructor(
     }
 
 
-    fun setData(data: PodCastDataVO, context: Context) {
+    fun setData(data: UpNextPodCastDataVO, context: Context) {
 
         Log.d("fullPlayData", data.toString())
         mData = data

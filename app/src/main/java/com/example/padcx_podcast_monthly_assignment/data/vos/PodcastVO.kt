@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class PodcastVO(
     @SerializedName("id")
-    val podcastId: String = "",
+    var podcast_id: String = "",
     @SerializedName("image")
-    val podCastImage: String = "",
+    var podcast_image: String = "",
     @SerializedName("listennotes_url")
-    val podCastListennotesUrl: String = "",
+    var podcast_listennotes_url: String = "",
     @SerializedName("publisher")
-    val podCastPublisher: String = "",
+    var podcast_publisher: String = "",
     @SerializedName("thumbnail")
-    val podCastThumbnail: String = "",
+    var podcast_thumbnail: String = "",
     @SerializedName("title")
-    val podCastTitle: String = ""
+    var podcast_title: String = ""
 )

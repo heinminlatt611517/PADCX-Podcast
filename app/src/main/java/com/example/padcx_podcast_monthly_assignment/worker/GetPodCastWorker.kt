@@ -7,14 +7,14 @@ class GetPodCastWorker (context: Context,workerParameters: WorkerParameters) : B
     override fun doWork(): Result {
         var result = Result.failure()
 
-        mPodCastModel.getPodCastFromApiAndSaveToDatabase(
-            onSuccess = {
-                result = Result.success()
-            },
-            onError = {
-                result = Result.failure()
-            }
-        )
+//        mPodCastModel.getPodCastFromApiAndSaveToDatabase(
+//            onSuccess = {
+//                result = Result.success()
+//            },
+//            onError = {
+//                result = Result.failure()
+//            }
+//        )
 
 
         mPodCastModel.getAllUpNextPodCastFromApiAndSaveToDatabase(

@@ -26,10 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.padcx_podcast_monthly_assignment.R
 import com.example.padcx_podcast_monthly_assignment.activities.PodcastDetailActivity
 import com.example.padcx_podcast_monthly_assignment.adapter.UpNextPodcastAdapter
-import com.example.padcx_podcast_monthly_assignment.data.vos.DownloadPodCastDataVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.PodCastDataVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastDataVO
-import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastPlaylistsVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.*
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.HomePresenter
 import com.example.padcx_podcast_monthly_assignment.mvp.presenter.impls.HomePresenterImpl
 import com.example.padcx_podcast_monthly_assignment.mvp.view.HomeView
@@ -38,8 +35,6 @@ import com.example.padcx_podcast_monthly_assignment.utils.HOME_FRAGMENT
 import com.example.padcx_podcast_monthly_assignment.views.viewPods.FullPlayerViewPod
 import com.example.shared.fragment.BaseFragment
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.ui.PlayerView
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -140,21 +135,52 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
 
-    override fun showNowPlayingPodCast(podCastEpisode: PodCastDataVO) {
+    override fun showNowPlayingPodCast(podCastEpisode: UpNextPodCastDataVO) {
         context?.let { mFullPlayerViewPod.setData(podCastEpisode, it) }
         Log.d("podCastEpisode", podCastEpisode.toString())
     }
 
-
-    override fun showUpNextPodCastlists(podCastPlaylists: UpNextPodCastPlaylistsVO) {
-        mUpNextPodcastAdapter.setNewData(podCastPlaylists.items.toMutableList())
+    override fun showUpNextPodCastlists(podCastPlaylists: ArrayList<UpNextPodCastDataVO>) {
+        mUpNextPodcastAdapter.setNewData(podCastPlaylists.toMutableList())
     }
+
+//    override fun showUpNextPodCastlists(podCastPlaylists: ArrayList<UpNextVO>) {
+//        mUpNextPodcastAdapter.setNewData(podCastPlaylists.toMutableList())
+//    }
+
+
+//    override fun showUpNextPodCastlists(podCastPlaylists: UpNextPodCastPlaylistsVO) {
+//        mUpNextPodcastAdapter.setNewData(podCastPlaylists.items.toMutableList())
+//    }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onTapDownloadButton(podCastData: UpNextPodCastDataVO) {
         //beginDownload(podCastData)
     }
+
+    override fun navigateToDetailScreen(id: String) {
+        startActivity(context?.let { PodcastDetailActivity.newIntent(it,id) })
+    }
+
+//    override fun navigateToDetailScreen(
+//        audio: String,
+//        title: String,
+//        image: String,
+//        description: String
+//    ) {
+//        startActivity(PodcastDetailActivity.newIntent(activity as Context,
+//            audio,
+//            title,
+//            image,
+//            description,
+//            HOME_FRAGMENT))
+//    }
+
+    override fun showDownloadPodcastItem(data: UpNextPodCastDataVO) {
+       setUpPremission(data)
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun beginDownload(podCastData: UpNextPodCastDataVO) {
@@ -163,7 +189,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
         downloadManager = activity?.getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
         val Download_Uri =
-            Uri.parse(podCastData.UpNextAudio)
+            Uri.parse(podCastData.audio)
         val request =
             DownloadManager.Request(Download_Uri)
 
@@ -181,14 +207,16 @@ class HomeFragment : BaseFragment(), HomeView {
 
     }
 
-    override fun navigateToDetailScreen(id: String) {
+//    override fun navigateToDetailScreen(id: String) {
+//
+//        startActivity(PodcastDetailActivity.newIntent(activity as Context, id, HOME_FRAGMENT,""))
+//    }
 
-        startActivity(PodcastDetailActivity.newIntent(activity as Context, id, HOME_FRAGMENT,""))
-    }
+//    override fun showDownloadPodcastItem(data: UpNextVO) {
+//        setUpPremission(data)
+//    }
 
-    override fun showDownloadPodcastItem(data: UpNextPodCastDataVO) {
-        setUpPremission(data)
-    }
+
 
     private fun setUpPremission(data: UpNextPodCastDataVO) {
         val permission = ContextCompat.checkSelfPermission(

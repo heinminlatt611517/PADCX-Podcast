@@ -3,38 +3,40 @@ package com.example.padcx_podcast_monthly_assignment.data.vos
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "podCast")
+@IgnoreExtraProperties
 data class PodCastDataVO(
     @PrimaryKey
     @SerializedName("id")
-    val id: String = "",
+    var id: String = "",
     @SerializedName("audio")
-    val audio: String = "",
+    var audio: String = "",
     @SerializedName("audio_length_sec")
-    val audioLengthSecs: Int = 0,
+    var audio_length_sec: Int = 0,
     @SerializedName("description")
-    val description: String = "",
+    var description: String = "",
     @SerializedName("explicit_content")
-    val explicitContent: Boolean = false,
+    var explicit_content: Boolean = false,
     @SerializedName("image")
-    val image: String = "",
+    var image: String = "",
     @SerializedName("link")
-    val link: String? = "",
+    var link: String? = "",
     @SerializedName("listennotes_edit_url")
-    val listennotesEditUrl: String = "",
+    var listennotes_edit_url: String = "",
     @SerializedName("listennotes_url")
-    val listennotesUrl: String = "",
+    var listennotes_url: String = "",
     @SerializedName("maybe_audio_invalid")
-    val maybeAudioInvalid: Boolean = false,
+    var maybe_audio_invalid: Boolean = false,
     @Embedded
     @SerializedName("podcast")
-    val podcast: PodcastVO? = null,
+    var podcast: PodcastVO? = null,
     @SerializedName("pub_date_ms")
-    val pubDateMs: Long = 0,
+    var pub_date_ms: Long = 0,
     @SerializedName("thumbnail")
-    val thumbnail: String = "",
+    var thumbnail: String = "",
     @SerializedName("title")
-    val title: String = ""
+    var title: String = ""
 )

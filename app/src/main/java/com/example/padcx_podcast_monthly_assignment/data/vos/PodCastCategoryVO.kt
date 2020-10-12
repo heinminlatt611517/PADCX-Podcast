@@ -2,17 +2,19 @@ package com.example.padcx_podcast_monthly_assignment.data.vos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "podCastCategory")
+@IgnoreExtraProperties
 data class PodCastCategoryVO (
-    @PrimaryKey
+   @PrimaryKey
     @SerializedName("id")
-    val id : Int  = 0,
+   var id : Int  = 0,
     @SerializedName("name")
-    val name : String = "",
+    var name : String = "",
     @SerializedName("parent_id")
-    val parentId : Int = 0,
+   var parent_id : Int = 0,
     @SerializedName("image_url")
-    val image_rul : String = ""
+    val image_url : String = ""
 )

@@ -14,7 +14,7 @@ class PodcastCategoryViewHolder(itemView: View) : BaseViewHolder<PodCastCategory
 
     override fun bindData(data: PodCastCategoryVO) {
          mData = data
-        itemView.iv_category.glideImageLoader(itemView.context,data.image_rul)
+        //data.image_url?.let { itemView.iv_category.glideImageLoader(itemView.context, it) }
 
     }
 

@@ -17,6 +17,7 @@ class SearchCategoryPresenterImpl : SearchCategoryPresenter ,AbstractBasePresent
 
     override fun onUIReady(lifecycleOwner: LifecycleOwner) {
         getPodCastCategory(lifecycleOwner)
+
     }
 
     private fun getPodCastCategory(lifecycleOwner: LifecycleOwner) {

@@ -1,37 +1,57 @@
 package com.example.padcx_podcast_monthly_assignment.views.viewHolders
 
 import android.view.View
-import com.bumptech.glide.Glide
-import com.example.padcx_podcast_monthly_assignment.data.vos.ItemVO
+import com.example.padcx_podcast_monthly_assignment.data.vos.UpNextPodCastDataVO
 import com.example.padcx_podcast_monthly_assignment.delegate.PodCastItemDelegate
 import com.example.padcx_podcast_monthly_assignment.utils.glideImageLoader
 import com.example.shared.viewHolder.BaseViewHolder
 import kotlinx.android.synthetic.main.item_up_next_podcast.view.*
-import java.util.*
 
-class UpNextPodcastViewHolder(private val mDelegate: PodCastItemDelegate,itemView: View) : BaseViewHolder<ItemVO>(itemView) {
+class UpNextPodcastViewHolder(private val mDelegate: PodCastItemDelegate,itemView: View) : BaseViewHolder<UpNextPodCastDataVO>(itemView) {
     override fun clickItem(it: View?) {
-        mData?.data?.UpNextId?.let { it1 -> mDelegate.onTapUpNextPodCastItem(it1) }
+        mData?.id?.let { it1 -> mDelegate.onTapUpNextPodCastItem(it1) }
+//        mData?.description?.let { it1 ->
+//            mData?.audio?.let { it2 ->
+//                mData?.title?.let { it3 ->
+//                    mData?.image?.let { it4 ->
+//                        mDelegate.onTapUpNextPodCastItem(
+//                            it2, it3, it4,
+//                            it1
+//                        )
+//                    }
+//                }
+//            }
+//        }
 
     }
 
 
-    override fun bindData(data: ItemVO) {
+    override fun bindData(data: UpNextPodCastDataVO) {
        mData=data
 
-        data.data?.UpNextThumbnail?.let {
-            itemView.iv_upNext.glideImageLoader(itemView.context, it)
+        data.image.let {
+            if (it != null) {
+                itemView.iv_upNext.glideImageLoader(itemView.context, it)
+            }
         }
 
-        itemView.tv_episodeDescriptionTitle.text=data.data?.UpNextTitle
-        itemView.progressBar.progress = data.data?.UpNextAudioLengthSecs!! / 60 % 60
+//        itemView.tv_episodeDescriptionTitle.text=data.data?.UpNextTitle
+//        itemView.progressBar.progress = data.data?.UpNextAudioLengthSecs!! / 60 % 60
+//
+//        itemView.tv_remainPlayHour.text = stringForTime(data.data?.UpNextAudioLengthSecs!!)
+//
+//        itemView.iv_download.setOnClickListener {
+//            mData!!.data?.let { it1 -> mDelegate.onTapDownloadButton(it1) }
+//        }
 
-        itemView.tv_remainPlayHour.text = stringForTime(data.data?.UpNextAudioLengthSecs!!)
+        itemView.tv_episodeDescriptionTitle.text=data.title
+        itemView.progressBar.progress = data.audio_length_sec!! / 60 % 60
+
+        itemView.tv_remainPlayHour.text = stringForTime(data?.audio_length_sec!!)
 
         itemView.iv_download.setOnClickListener {
-            mData!!.data?.let { it1 -> mDelegate.onTapDownloadButton(it1) }
+            mData!!.let { it1 -> mDelegate.onTapDownloadButton(it1) }
         }
-
     }
 
 
